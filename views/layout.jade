@@ -2,6 +2,10 @@ doctype html
 html
   head
     title= title
+    script(src='http://code.jquery.com/jquery-1.11.0.min.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/simple_bootstrap.css')
+    script(src='/javascripts/bootstrap.js')
   body
+    include navbar.html
     block content

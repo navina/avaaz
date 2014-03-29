@@ -1,0 +1,95 @@
+<!-- reference http://bootstrapzero.com/bootstrap-template/landing-page-->
+<div class="container-full">
+
+      <div class="row">
+       
+        <div class="col-lg-12 text-center v-center">
+          
+          <h1>Hello! This is awaaz landing page</h1>
+          <p class="lead">Demonstation of Google Map Address API</p>
+          
+          <form class="col-lg-12" id="addressForm">
+            <div class="input-group" style="width:500px;text-align:center;margin:0 auto;">
+            <input class="form-control input-lg" placeholder="Enter address" name="address" type="text">
+
+              <span class="input-group-btn"><input type="submit" value="Submit" class="btn btn-lg btn-primary"></span>
+            </div>
+          </form>
+        </div>
+        
+        
+      
+      </div> <!-- /row -->
+
+      <div class="row" style="padding-top:50px">
+ 
+<script>
+$("#addressForm").submit(function() {
+ 	// reference: http://www.mattlunn.me.uk/blog/2012/10/submitting-a-form-as-an-ajax-request-using-jquery/
+ 	// stop the form from submitting the normal way and refreshing the page
+ 	var formData = {
+			'address' 				: $('input[name=address]').val()
+		};
+		getGoogleMapApiEndpoint(formData.address)
+		event.preventDefault();
+    /*
+    event.preventDefault();
+ 	$.ajax({
+      data 		: $(this).serialize(), // our data object
+      dataType 	: 'json' // what type of data do we expect back from the server
+    }).done(function(data){
+    	console.log("test")
+  		console.log(data);  	
+    })
+    */ 	
+    // geocoding apiKey: AIzaSyCSlmQ6fLKvbnU8u-H_Sg6qaRxEX_55nOg
+});
+
+function getGoogleMapApiEndpoint(address) {
+    var x = "https://maps.googleapis.com/maps/api/geocode/json?sensor=true&key=AIzaSyCSlmQ6fLKvbnU8u-H_Sg6qaRxEX_55nOg&address="+encodeURIComponent(address);
+    
+    $.ajax({url:x,success:function(result){
+      var cooridnateObject = result.results[0].geometry.location
+      console.log(cooridnateObject.lat+" "+cooridnateObject.lng)
+      var myLatlng = new google.maps.LatLng(cooridnateObject.lat,cooridnateObject.lng);
+      dropPin(cooridnateObject)
+    }});
+
+}
+
+function dropPin(cooridnateObject) {
+  var myLatlng = cooridnateObject;
+  var mapOptions = {
+    zoom: 12,
+    center: myLatlng
+  }
+  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+  var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Sample Pin'
+  });
+}
+</script>
+        <div class="col-lg-12 text-center v-center">
+		    <div class="input-group" style="text-align:center;margin:0 auto;">
+   				<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+   				<script>
+					var map;
+					function initialize() {
+					  var mapOptions = {
+					    zoom: 4,
+					    center: new google.maps.LatLng(21.1458004, 79.0881546)
+					  };
+					  map = new google.maps.Map(document.getElementById('map-canvas'),
+					      mapOptions);
+					}
+					console.log("here")
+					google.maps.event.addDomListener(window, 'load', initialize);
+    			</script>
+    			<div id="map-canvas" style="width:500px;height:380px;"></div>
+        	</div>	
+      	</div>
+  	</div>
+</div>
