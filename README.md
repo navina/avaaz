@@ -1,3 +1,3 @@
-Testing push from server
+Testing push
 
 
