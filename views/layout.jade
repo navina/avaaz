@@ -2,10 +2,16 @@ doctype html
 html
   head
     title= title
-    script(src='http://code.jquery.com/jquery-1.11.0.min.js')
+    script(src='/javascripts/jquery.js')
+    script(src='/javascripts/smoothscroll.js')
+    script(src='/javascripts/bootstrap.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/simple_bootstrap.css')
-    script(src='/javascripts/bootstrap.js')
+    link(rel='stylesheet', href='/stylesheets/lighter.css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Lato:300,400,900')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=EB+Garamond:300,400,900')
+    
+    
   body
     include navbar.html
     block content
