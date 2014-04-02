@@ -30,8 +30,9 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/home', home.index);
+app.get('/', routes.home);
+app.get('/home', routes.home);
+app.get('/submitReport', routes.submitReport);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
