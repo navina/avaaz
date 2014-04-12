@@ -33,3 +33,6 @@ exports.contactUs = function(req, res){
 	res.render('contactUs')
 }
 
+exports.sampleMap = function(req, res){
+	res.render('sampleMapWithAddress')
+}
