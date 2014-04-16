@@ -38,6 +38,7 @@ app.get('/legalAdvise', routes.legalAdvise);
 app.get('/aboutUs', routes.aboutUs);
 app.get('/contactUs', routes.contactUs);
 app.get('/sampleMap', routes.sampleMap);
+app.get('/index', routes.index);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
