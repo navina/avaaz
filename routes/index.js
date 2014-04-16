@@ -36,3 +36,74 @@ exports.contactUs = function(req, res){
 exports.sampleMap = function(req, res){
 	res.render('sampleMapWithAddress')
 }
+
+exports.index = function(req, res){
+    
+    /*var mysql = require('mysql');
+     
+     
+     
+     var dbconfig = {
+     
+     host:'localhost',
+     
+     user:'chhaya',
+     
+     password:'chhayPass123',
+     
+     database:'chhaya',
+     
+     port:'3306'
+     
+     };
+     
+     var connection = mysql.createConnection(dbconfig);
+     
+     var query ='SELECT * FROM person';
+     
+     connection.query(query, function(err, rows, fields){
+     
+     if(err) throw err;
+     
+     //res.render('index', { title: 'Express', 'items':rows });
+     
+     else
+     
+     console.log(rows);
+     
+     
+     
+     });
+     
+     connection.destroy( );*/
+    
+    
+    
+    var Pool = require('mysql-simple-pool');
+    var maxConnections = 100
+    
+    var pool = new Pool(maxConnections, {
+                        
+                        host: 'localhost',
+                        
+                        user: 'chhaya',
+                        
+                        password: 'chhayPass123',
+                        
+                        database: 'chhaya'
+                        
+                        });
+    
+    var qry ='SELECT * FROM person';
+    
+    pool.query(qry, function(err, results){
+               
+               if(err) throw err;
+               
+               else
+               
+               console.log(results);
+               
+               });
+    pool.dispose();
+}
