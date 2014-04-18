@@ -44,12 +44,12 @@
 			    				</div>
 			    				<div class="form-group">
 			    					<div class="col-xs-5" style="width: 60px;">
-			    						<p class="bg-info">
-			    							<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-          									Next
-        									</a>
-        								</p>
-        							</div>
+			    						<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        								NEXT &nbsp;<span class="glyphicon glyphicon-circle-arrow-down">
+        									
+        								</span>
+        								</button>
+     								</div>
 			    				</div>
       						</div>
     					</div>
@@ -66,19 +66,28 @@
     					<div id="collapseTwo" class="panel-collapse collapse">
       						<div class="panel-body">
       							<div class="form-group">
+			        				<div class="col-xs-5" style="width: 120px; float: right; position:relative;">
+			        					<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        								PREVIOUS  &nbsp;<span class="glyphicon glyphicon-circle-arrow-up">
+        									
+        								</span>
+        								</button>	
+			        				</div>
+			    				</div>
+      							<div class="form-group">
 									<label for="whatIncidentToReport" class="control-label col-xs-4">What incident would you like to report?<br/></label>
 										<div class="col-xs-5">
 											<em>Check all the applicable boxes:</em>
 											<br/>
-											<input type="checkbox" name="incident" value="Eve Teasing"> Eve Teasing<br>
-											<input type="checkbox" name="incident" value="Voyeurism"> Voyeurism<br>
-											<input type="checkbox" name="incident" value="Acid Violence"> Acid Violence<br>
-											<input type="checkbox" name="incident" value="Stalking"> Stalking<br>
-											<input type="checkbox" name="incident" value="Rape"> Rape<br>
-											<input type="checkbox" name="incident" value="Disrobing"> Disrobing<br>
-											<input type="checkbox" name="incident" value="Domestic Violence"> Domestic Violence<br>
-											<input type="checkbox" name="incident" value="Marital Rape"> Marital Rape<br>
-											<input type="checkbox" name="incident" value="Other" onclick="describe_Incident()"> Other<br>
+											<input type="checkbox" class="incident" name="incident" value="Eve Teasing"> Eve Teasing<br>
+											<input type="checkbox" class="incident" name="incident" value="Voyeurism"> Voyeurism<br>
+											<input type="checkbox" class="incident" name="incident" value="Acid Violence"> Acid Violence<br>
+											<input type="checkbox" class="incident" name="incident" value="Stalking"> Stalking<br>
+											<input type="checkbox" class="incident" name="incident" value="Rape"> Rape<br>
+											<input type="checkbox" class="incident" name="incident" value="Disrobing"> Disrobing<br>
+											<input type="checkbox" class="incident" name="incident" value="Domestic Violence"> Domestic Violence<br>
+											<input type="checkbox" class="incident" name="incident" value="Marital Rape"> Marital Rape<br>
+											<input type="checkbox" class="incident" name="incident" value="Other" onclick="describe_Incident()"> Other<br>
 			        					</div>
 			        			</div>
 			        			<div class="form-group" id="other_div">
@@ -89,11 +98,11 @@
 			    				</div>
 			    				<div class="form-group">
 			    					<div class="col-xs-5" style="width: 60px;">
-			    						<p class="bg-info">
-			    							<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-          									Next
-        									</a>
-        								</p>
+			    						<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+        								NEXT  &nbsp;<span class="glyphicon glyphicon-circle-arrow-down">
+        									
+        								</span>
+        								</button>
         							</div>
 			    				</div>
       						</div>
@@ -110,6 +119,15 @@
     					</div>
     					<div id="collapseThree" class="panel-collapse collapse">
       						<div class="panel-body">
+      							<div class="form-group">
+			        				<div class="col-xs-5" style="width: 120px; float: right; position:relative;">
+			        					<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        								PREVIOUS  &nbsp;<span class="glyphicon glyphicon-circle-arrow-up">
+        									
+        								</span>
+        								</button>	
+			        				</div>
+			    				</div>
       							<div class="form-group">
       								<label for="location" class="control-label col-xs-4">Location</label>
       								<div class="col-xs-5">
@@ -133,11 +151,11 @@
 			        			</div>
 			        			<div class="form-group">
 			        				<div class="col-xs-5" style="width: 60px;">
-			        					<p class="bg-info">
-			        						<a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-          									Next
-        									</a>	
-			        					</p>	
+			        					<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+        								NEXT  &nbsp;<span class="glyphicon glyphicon-circle-arrow-down">
+        									
+        								</span>
+        								</button>	
 			        				</div>
 			    				</div> 		
       						</div>
@@ -154,10 +172,19 @@
     					</div>
     					<div id="collapseFour" class="panel-collapse collapse">
       						<div class="panel-body">
+      							<div class="form-group">
+			        				<div class="col-xs-5" style="width: 120px; float: right; position:relative;">
+			        					<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+        								PREVIOUS  &nbsp;<span class="glyphicon glyphicon-circle-arrow-up">
+        									
+        								</span>
+        								</button>	
+			        				</div>
+			    				</div>
 								<div class="form-group">
 			    					<label for="info" class="control-label col-xs-4">Information/Desciption</label>
 			        				<div class="col-xs-5">
-			            				<textarea class="form-control" id="info" rows="6" placeholder="Enter a short description (Optional)"></textarea>
+			            				<textarea class="form-control" id="additional_info" rows="6" placeholder="Enter a short description (Optional)"></textarea>
 			        				</div>
 			    				</div>
 			    				
@@ -171,11 +198,11 @@
     							
     							<div class="form-group">
 			        				<div class="col-xs-5" style="width: 60px;">
-			        					<p class="bg-info">
-    										<a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-          									Next
-        									</a>
-        								</p>
+			        					<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+        								NEXT  &nbsp;<span class="glyphicon glyphicon-circle-arrow-down">
+        									
+        								</span>
+        								</button>
   									</div>
       							</div>	
 							</div>
@@ -192,6 +219,15 @@
     					</div>
     					<div id="collapseFive" class="panel-collapse collapse">
       						<div class="panel-body">
+      							<div class="form-group">
+			        				<div class="col-xs-5" style="width: 120px; float: right; position:relative;">
+			        					<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+        								PREVIOUS  &nbsp;<span class="glyphicon glyphicon-circle-arrow-up">
+        									
+        								</span>
+        								</button>	
+			        				</div>
+			    				</div>
       							<div class="form-group">    
 			       					 <label for="firstName" class="control-label col-xs-4">First Name</label>
 			        				<div class="col-xs-5">
@@ -219,7 +255,7 @@
 			    				
 			    				<div class="form-group">
 			        				<div class="col-xs-offset-4 col-xs-10">
-			            				<button type="submit" class="btn btn-primary">Submit</button>
+			            				<button type="submit" class="btn btn-primary" onclick="onSubmitClick()">Submit</button>
 			       					</div>
 			    				</div>
 							</div>
