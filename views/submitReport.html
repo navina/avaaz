@@ -1,6 +1,15 @@
 <div style="padding-top:20px">
 <div class="container-full col-xs-offset-2 col-xs-8">
-	<div class="row centered-form">
+	<div class="row text-center">
+	<h4>
+	  	Zariya makes justice actionable and accessible to women facing gender-based violence.<br/> 
+      By providing a risk-free way for women to voice their experiences, <br/>
+      Zariya paves women’s paths from feeling like victims to being survivors with a right and will to justice.<br/>
+	  	
+	  </h4>
+	</div>  
+
+	<div class="row centered-form paddingTop10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
     		<h3 class="panel-title">Submit A New Report</h3>
@@ -128,13 +137,77 @@
         								</button>	
 			        				</div>
 			    				</div>
+			    				<!-- Javascript for loading maps and dropping a pin-->
+			    				<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+				   				<script>
+									var map;
+									function initialize() {
+									  var mapOptions = {
+									    zoom: 4,
+									    center: new google.maps.LatLng(21.1458004, 79.0881546)
+									  };
+									  map = new google.maps.Map(document.getElementById('map-canvas'),
+									      mapOptions);
+									}
+									google.maps.event.addDomListener(window, 'load', initialize);
+				    			</script>
+
+			    				<script>
+
+									function onClickButton(){
+										getGoogleMapApiEndpoint(document.getElementById('location').value);
+										document.getElementById('map-canvas').style.display = 'block';
+
+									}
+
+									function getGoogleMapApiEndpoint(address) {
+									    var x = "https://maps.googleapis.com/maps/api/geocode/json?sensor=true&key=AIzaSyCSlmQ6fLKvbnU8u-H_Sg6qaRxEX_55nOg&address="+encodeURIComponent(address);
+									    
+									    $.ajax({url:x,success:function(result){
+									      var cooridnateObject = result.results[0].geometry.location
+									      var myLatlng = new google.maps.LatLng(cooridnateObject.lat,cooridnateObject.lng);
+									      dropPin(cooridnateObject)
+									    }});
+
+									}
+
+									function dropPin(cooridnateObject) {
+									  var myLatlng = cooridnateObject;
+									  var mapOptions = {
+									    zoom: 12,
+									    center: myLatlng
+									  }
+									  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+									  var marker = new google.maps.Marker({
+									      position: myLatlng,
+									      map: map,
+									      title: 'Sample Pin'
+									  });
+									  document.getElementById("locationLat").value = myLatlng.lat;
+									  document.getElementById("locationLng").value = myLatlng.lng;
+									  console.log(document.getElementById("locationLat").value);
+									  console.log(document.getElementById("locationLng").value);
+
+									}
+									
+
+								</script>
       							<div class="form-group">
       								<label for="location" class="control-label col-xs-4">Location</label>
       								<div class="col-xs-5">
 			            					<input type="text" class="form-control" name="location" id="location" placeholder="Enter your location" />
 			        					</div>
-									<button type="button" class="btn btn-success">Go</button>
+			        					
+									<button type="button" class="btn btn-success" onclick="onClickButton()">Go</button>
 			    				</div>
+			    				<div class="col-lg-12 text-center v-center">
+							      	<div class="input-group" style="text-align:center;margin:0 auto;padding-bottom:10px">
+					    				<div id="map-canvas" style="width:500px;height:380px;display:none"></div>
+					        		</div>	
+  								</div>
+  								<input type="hidden" id="locationLat" />
+  								<input type="hidden" id="locationLng" />
 			    				
 			    				<div class="form-group">
 			    					<label for="time" class="control-label col-xs-4">Time of incident</label>
@@ -213,7 +286,7 @@
     					<div class="panel-heading">
       						<h4 class="panel-title">
         						<a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-          						Contact
+          						Submit
         						</a>
       						</h4>
     					</div>

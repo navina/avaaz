@@ -60,6 +60,8 @@ function onSubmission()
  	//alert(incident_description);
  	
 	var location = $("#location").val();
+	var locationLat = $("#locationLat").val();
+	var locationLng = $("#locationLng").val();
 
 	var date = $("#date").val();
 	var time = $("#time").val();
@@ -70,5 +72,22 @@ function onSubmission()
  	var lastName = $("#lastName").val();
  	var email = $("#email").val();
  	var number = $("#number").val();
+ 	console.log("Inside for submission");
+ 	$.post( "/submitReport", 
+ 		{ 	"person": person, 
+ 			"doYouKnow": doYouKnow, 
+ 			"firstTimeCrime": firstTimeCrime,
+ 			"incident_list": incident_list,
+ 			"otherIncidence": otherIncidence,
+ 			"location" : location,
+ 			"locationLat" : locationLat,
+ 			"locationLng": locationLng,
+ 			"date" : date,
+ 			"comments" : comments,
+ 			"firstName" : firstName,
+ 			"lastName" : lastName,
+ 			"email": email,
+ 			"number" : number});
+ 	event.preventDefault();
  	
 }
