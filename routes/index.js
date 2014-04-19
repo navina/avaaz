@@ -18,8 +18,10 @@ exports.submitReport = function(req, res){
 };
 
 exports.submitReportData = function(req, res){
-    console.log("Inside submitReportData");
-    console.log(req.body);
+    var data = req.body;
+    var doYouKnowAssailant = data.doYouKnow;
+    console.log(data); // prints out entire json data
+    console.log(doYouKnowAssailant); // prints out a single field
     res.send(200);
 }
 
