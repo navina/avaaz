@@ -92,17 +92,25 @@ exports.index = function(req, res){
     
     var pool = new Pool(maxConnections, {
                         
-                        host: 'localhost',
+                        host: '54.186.110.31',
                         
-                        user: 'chhaya',
+                        user: 'zariya',
                         
-                        password: 'chhayPass123',
+                        password: 'zariyaPass123',
                         
-                        database: 'chhaya'
+                        database: 'zariya'
                         
                         });
     
     var qry ='SELECT * FROM person';
+    
+    var qry1='INSERT INTO person(firstName,lastName,email,phone)VALUES("john","doe","j@doe.com","1234567788")';
+    pool.query(qry1, function(err, results){
+               
+               if(err) throw err;
+               
+               
+               })
     
     pool.query(qry, function(err, results){
                
@@ -115,3 +123,4 @@ exports.index = function(req, res){
                });
     pool.dispose();
 }
+
