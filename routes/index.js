@@ -92,7 +92,7 @@ exports.index = function(req, res){
     
     var pool = new Pool(maxConnections, {
                         
-                        host: '54.186.110.31',
+                        host: 'localhost',
                         
                         user: 'zariya',
                         
