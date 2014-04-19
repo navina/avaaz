@@ -3,6 +3,8 @@ CREATE DATABASE zariya;
 CREATE USER 'zariya'@'localhost' IDENTIFIED BY 'zariyaPass123';
 GRANT ALL PRIVILEGES ON zariya.* TO 'zariya'@'localhost';
 
+USE zariya;
+
 CREATE TABLE IF NOT EXISTS person ( \
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY COMMENT 'identifier for a person', \
 	firstName VARCHAR(50), \
@@ -25,8 +27,8 @@ CREATE TABLE IF NOT EXISTS incident ( \
 	coordinates VARCHAR(50), \
 	comment TEXT, \
 	mediaId INT REFERENCES content (id), \
-	firstTime ENUM('y', 'Y', 'n', 'N') NOT NULL, \
-	knownAssailant ENUM('y', 'Y', 'n', 'N') NOT NULL, \
+	firstTime ENUM('Y', 'N') NOT NULL, \
+	knownAssailant ENUM('Y', 'N') NOT NULL, \
 	reporterRelation ENUM('SURVIVOR', 'FRIEND_OF_SURVIVOR', 'RELATIVE_OF_SURVIVOR', 'NOT_RELATED') NOT NULL
 );
 
