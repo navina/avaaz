@@ -61,5 +61,8 @@ function onSubmission()
  	var lastName = $("#lastName").val();
  	var email = $("#email").val();
  	var number = $("#number").val();
+ 	console.log("Inside for submission");
+ 	$.post( "/submitReport", { name: "John", time: "2pm" } );
+ 	event.preventDefault();
  	
 }

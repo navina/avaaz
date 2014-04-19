@@ -17,6 +17,12 @@ exports.submitReport = function(req, res){
 	res.render('submitReport')
 };
 
+exports.submitReportData = function(req, res){
+    console.log("Inside submitReportData");
+    console.log(req.body);
+    res.send(200);
+}
+
 exports.viewMap = function(req, res){
 	res.render('viewMap')
 }
