@@ -156,7 +156,6 @@
 									    
 									    $.ajax({url:x,success:function(result){
 									      var cooridnateObject = result.results[0].geometry.location
-									      console.log(cooridnateObject.lat+" "+cooridnateObject.lng)
 									      var myLatlng = new google.maps.LatLng(cooridnateObject.lat,cooridnateObject.lng);
 									      dropPin(cooridnateObject)
 									    }});
@@ -176,6 +175,11 @@
 									      map: map,
 									      title: 'Sample Pin'
 									  });
+									  document.getElementById("locationLat").value = myLatlng.lat;
+									  document.getElementById("locationLng").value = myLatlng.lng;
+									  console.log(document.getElementById("locationLat").value);
+									  console.log(document.getElementById("locationLng").value);
+
 									}
 									
 
@@ -192,6 +196,8 @@
 					    				<div id="map-canvas" style="width:500px;height:380px;display:none"></div>
 					        		</div>	
   								</div>
+  								<input type="hidden" id="locationLat" />
+  								<input type="hidden" id="locationLng" />
 			    				
 			    				<div class="form-group">
 			    					<label for="time" class="control-label col-xs-4">Time of incident</label>
