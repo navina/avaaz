@@ -1,6 +1,20 @@
 $(document).ready(function(){
 	$("#first_time").hide();
 	$("#other_div").hide();
+	
+	$("#other_incident").click(function() {
+  		var isChecked = $(this).is(':checked');
+  		if(isChecked)
+    	{
+       		$("#other_div").show();
+    	}
+    	else
+    	{
+        	$("#other_div").hide();
+    	}
+
+	});
+	
 });
 
 
@@ -15,11 +29,6 @@ function first_time_display()
   	{
   		$("#first_time").hide();
   	}
-}
-
-function describe_Incident()
-{
-	$("#other_div").show();
 }
 
 function onSubmitClick() //to check for empty fields
@@ -46,7 +55,7 @@ function onSubmission()
     var incident_description="";
      
     if(incident_list.indexOf("Other")!=-1)
-    	incident_description = $("textarea#other").val();
+    	incident_description = $("#other").val();
  	
  	//alert(incident_description);
  	
