@@ -45,6 +45,10 @@ exports.sampleMap = function(req, res){
 	res.render('sampleMapWithAddress')
 }
 
+exports.info = function(req, res){
+    res.render('info')    
+}
+
 exports.index = function(req, res){
     
     /*var mysql = require('mysql');
