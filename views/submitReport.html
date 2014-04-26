@@ -143,7 +143,7 @@ By sharing your story with Zariya, you can help us bridge the gap between report
 			        				</div>
 			    				</div>
 			    				<!-- Javascript for loading maps and dropping a pin-->
-			    				<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+			    			<!--	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 				   				<script>
 									var map;
 									function initialize() {
@@ -160,9 +160,16 @@ By sharing your story with Zariya, you can help us bridge the gap between report
 			    				<script>
 
 									function onClickButton(){
-										getGoogleMapApiEndpoint(document.getElementById('location').value);
-										document.getElementById('map-canvas').style.display = 'block';
 
+										if($("#location").val() == "")
+										{
+											alert("please enter value of location");
+										}
+										else
+										{
+											getGoogleMapApiEndpoint(document.getElementById('location').value);
+											document.getElementById('map-canvas').style.display = 'block';
+										}
 									}
 
 									function getGoogleMapApiEndpoint(address) {
@@ -197,7 +204,7 @@ By sharing your story with Zariya, you can help us bridge the gap between report
 									}
 									
 
-								</script>
+								</script> -->
       							<div class="form-group">
       								<label for="location" class="control-label col-xs-4">Location</label>
       								<div class="col-xs-5">
