@@ -24,10 +24,11 @@ CREATE TABLE IF NOT EXISTS incident ( \
 	incidentDate DATE NOT NULL, \
 	incidentTime TIME NOT NULL, \
 	location VARCHAR(200), \
-	coordinates VARCHAR(50), \
+	latitude VARCHAR(50), \
+	longitude VARCHAR(50), \
 	comment TEXT, \
 	mediaId INT REFERENCES content (id), \
-	firstTime ENUM('Y', 'N') NOT NULL, \
+	firstTime ENUM('Y', 'N', 'X') NOT NULL COMMENT 'X means the user did not provide an answer', \
 	knownAssailant ENUM('Y', 'N') NOT NULL, \
 	reporterRelation ENUM('SURVIVOR', 'FRIEND_OF_SURVIVOR', 'RELATIVE_OF_SURVIVOR', 'NOT_RELATED') NOT NULL
 );

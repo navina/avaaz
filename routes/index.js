@@ -19,9 +19,13 @@ exports.submitReport = function(req, res){
 
 exports.submitReportData = function(req, res){
     var data = req.body;
-    var doYouKnowAssailant = data.doYouKnow;
-    console.log(data); // prints out entire json data
-    console.log(doYouKnowAssailant); // prints out a single field
+
+
+    var db = require('./backend.js');
+    console.log(data);
+    var result = db.processForm(data);
+    console.log("This is your report ID - " + result);
+
     res.send(200);
 }
 
@@ -92,7 +96,7 @@ exports.index = function(req, res){
     
     var pool = new Pool(maxConnections, {
                         
-                        host: '54.186.110.31',
+                        host: 'localhost',
                         
                         user: 'zariya',
                         
