@@ -481,6 +481,9 @@ small,
 .small {
   font-size: 85%;
 }
+.paddingTop10 {
+  padding-top: 10px;
+}
 cite {
   font-style: normal;
 }

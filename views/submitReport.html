@@ -1,6 +1,15 @@
 <div style="padding-top:20px">
 <div class="container-full col-xs-offset-2 col-xs-8">
-	<div class="row centered-form">
+	<div class="row text-center">
+	<h4>
+	  	Zariya makes justice actionable and accessible to women facing gender-based violence.<br/> 
+      By providing a risk-free way for women to voice their experiences, <br/>
+      Zariya paves women’s paths from feeling like victims to being survivors with a right and will to justice.<br/>
+	  	
+	  </h4>
+	</div>  
+
+	<div class="row centered-form paddingTop10">
 	<div class="panel panel-default">
 		<div class="panel-heading">
     		<h3 class="panel-title">Submit A New Report</h3>
@@ -87,13 +96,13 @@
 											<input type="checkbox" class="incident" name="incident" value="Disrobing"> Disrobing<br>
 											<input type="checkbox" class="incident" name="incident" value="Domestic Violence"> Domestic Violence<br>
 											<input type="checkbox" class="incident" name="incident" value="Marital Rape"> Marital Rape<br>
-											<input type="checkbox" class="incident" name="incident" value="Other" onclick="describe_Incident()"> Other<br>
+											<input type="checkbox" class="incident" name="incident" id="other_incident" value="Other"> Other<br>
 			        					</div>
 			        			</div>
 			        			<div class="form-group" id="other_div">
 			    					<label for="other" class="control-label col-xs-4">Any other type of Incident</label>
 			        				<div class="col-xs-5">
-			            				<textarea class="form-control" id="other" rows="6" placeholder="Enter a short description (Optional)"></textarea>
+			            				<input type="text" class="form-control" id="other" placeholder="Enter the incident">
 			        				</div>
 			    				</div>
 			    				<div class="form-group">
@@ -189,7 +198,8 @@
       								<div class="col-xs-5">
 			            					<input type="text" class="form-control" name="location" id="location" placeholder="Enter your location" />
 			        					</div>
-									<button type="button" class="btn btn-default" onclick="onClickButton()">Go</button>
+			        					
+									<button type="button" class="btn btn-success" onclick="onClickButton()">Go</button>
 			    				</div>
 			    				<div class="col-lg-12 text-center v-center">
 							      	<div class="input-group" style="text-align:center;margin:0 auto;padding-bottom:10px">

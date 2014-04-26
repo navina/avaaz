@@ -46,13 +46,15 @@ body, h1, h2, h3, h4, h5, h6 {
   text-align: center;
   margin: 2em 0 0.5em;
 }
+.center-text{
+  text-align: center;  
+}
 .benefits {
   margin-bottom: 3em;
   margin-top:3em;
 }
 .benefit {
   margin: 1em 0;
-  text-align: center;
 }
 .benefit .benefit-ball {
   background: #f0f0f0;
