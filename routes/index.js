@@ -53,6 +53,16 @@ exports.info = function(req, res){
     res.render('info')    
 }
 
+exports.connect = function(req, res){
+    res.render('connect')    
+}
+
+exports.track = function(req, res){
+    res.render('track')    
+}
+
+
+
 exports.index = function(req, res){
     
     /*var mysql = require('mysql');
