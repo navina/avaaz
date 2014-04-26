@@ -2,6 +2,8 @@ $(document).ready(function(){
 	$("#first_time").hide();
 	$("#other_div").hide();
 	
+	$("#date").datepicker();
+
 	$("#other_incident").click(function() {
   		var isChecked = $(this).is(':checked');
   		if(isChecked)
@@ -16,7 +18,6 @@ $(document).ready(function(){
 	});
 	
 });
-
 
 function first_time_display()
 {
@@ -43,7 +44,17 @@ function onSubmission()
 	
 	var doYouKnow = $('input[name=assailant]:checked').val(); //do you know assailant
 	
-	var firstTimeCrime = $('input[name=time]:checked').val(); //first time facing crime
+	var firstTimeCrime;
+	
+	if(person == "Survivor")
+	{
+		firstTimeCrime = $('input[name=time]:checked').val(); //first time facing crime
+	}
+	else
+	{
+		firstTimeCrime = "Not Applicable"
+	}
+	
 	
 	var incident_list="";
 	 $('.incident:checked').each(function() {
@@ -52,10 +63,10 @@ function onSubmission()
         incident_list =  incident_list.slice(0,-1);
     	//alert(incident_list);
     
-    var incident_description="";
+    var otherIncidence="Not Applicable";
      
     if(incident_list.indexOf("Other")!=-1)
-    	incident_description = $("#other").val();
+    	otherIncidence = $("#other").val();
  	
  	//alert(incident_description);
  	
@@ -73,6 +84,7 @@ function onSubmission()
  	var email = $("#email").val();
  	var number = $("#number").val();
  	console.log("Inside for submission");
+
  	$.post( "/submitReport", 
  		{ 	"person": person, 
  			"doYouKnow": doYouKnow, 
