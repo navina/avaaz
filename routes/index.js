@@ -61,6 +61,9 @@ exports.track = function(req, res){
     res.render('track')    
 }
 
+exports.thankyou = function(req, res){
+    res.render('thankyou')    
+}
 
 
 exports.index = function(req, res){

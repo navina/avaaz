@@ -136,13 +136,24 @@ function onSubmission()
 	var time = $("#time").val();
 	
  	var comments = $("textarea#additional_info").val();
- 	
+
  	var firstName = $("#firstName").val();
  	var lastName = $("#lastName").val();
  	var email = $("#email").val();
  	var number = $("#number").val();
+
+ 	if(firstName == "")
+ 		firstName = "Anonymous";
+ 	if(lastName == "")
+ 		lastName = "Anonymous";
+ 	if(email == "")
+ 		email = "Anonymous";
+ 	if(number == "")
+ 		number = "Anonymous";
+
  	console.log("Inside for submission");
 
+ 	alert(number);
  	$.post( "/submitReport", 
  		{ 	"person": person, 
  			"doYouKnow": doYouKnow, 
@@ -160,4 +171,15 @@ function onSubmission()
  			"number" : number});
  	event.preventDefault();
  	
+}
+
+function submit_contact()
+{
+	var contact_name = $("#contact_name").val();
+	var contact_email = $("#contact_email").val();
+
+	var message = $("textarea#message").val();
+
+	if(message == "")
+		alert("Please enter a message");
 }

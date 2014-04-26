@@ -35,7 +35,7 @@ By sharing your story with Zariya, you can help us bridge the gap between report
       							<div class="form-group">    
 			        				<label for="whoIsReporting" class="control-label col-xs-4">Who is reporting the incident ?<br/></label>
 									<div class="col-xs-5">
-										<input type="radio" name="person" value="Survivor" onclick="first_time_display()"> Survivor<br>
+										<input type="radio" name="person" value="Survivor" onclick="first_time_display()" required> Survivor<br>
 										<input type="radio" name="person" value="Friend_of_survivor" onclick="first_time_display()"> Friend of survivor<br>
 										<input type="radio" name="person" value="Relative_of_survivor" onclick="first_time_display()"> Relative of survivor<br>
 										<input type="radio" name="person" value="Not_related" onclick="first_time_display()"> Stranger<br>
@@ -142,69 +142,7 @@ By sharing your story with Zariya, you can help us bridge the gap between report
         								</button>	
 			        				</div>
 			    				</div>
-			    				<!-- Javascript for loading maps and dropping a pin-->
-			    			<!--	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-				   				<script>
-									var map;
-									function initialize() {
-									  var mapOptions = {
-									    zoom: 4,
-									    center: new google.maps.LatLng(21.1458004, 79.0881546)
-									  };
-									  map = new google.maps.Map(document.getElementById('map-canvas'),
-									      mapOptions);
-									}
-									google.maps.event.addDomListener(window, 'load', initialize);
-				    			</script>
-
-			    				<script>
-
-									function onClickButton(){
-
-										if($("#location").val() == "")
-										{
-											alert("please enter value of location");
-										}
-										else
-										{
-											getGoogleMapApiEndpoint(document.getElementById('location').value);
-											document.getElementById('map-canvas').style.display = 'block';
-										}
-									}
-
-									function getGoogleMapApiEndpoint(address) {
-									    var x = "https://maps.googleapis.com/maps/api/geocode/json?sensor=true&key=AIzaSyCSlmQ6fLKvbnU8u-H_Sg6qaRxEX_55nOg&address="+encodeURIComponent(address);
-									    
-									    $.ajax({url:x,success:function(result){
-									      var cooridnateObject = result.results[0].geometry.location
-									      var myLatlng = new google.maps.LatLng(cooridnateObject.lat,cooridnateObject.lng);
-									      dropPin(cooridnateObject)
-									    }});
-
-									}
-
-									function dropPin(cooridnateObject) {
-									  var myLatlng = cooridnateObject;
-									  var mapOptions = {
-									    zoom: 12,
-									    center: myLatlng
-									  }
-									  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
-									  var marker = new google.maps.Marker({
-									      position: myLatlng,
-									      map: map,
-									      title: 'Sample Pin'
-									  });
-									  document.getElementById("locationLat").value = myLatlng.lat;
-									  document.getElementById("locationLng").value = myLatlng.lng;
-									  console.log(document.getElementById("locationLat").value);
-									  console.log(document.getElementById("locationLng").value);
-
-									}
-									
-
-								</script> -->
+			    				
       							<div class="form-group">
       								<label for="location" class="control-label col-xs-4">Location</label>
       								<div class="col-xs-5">
@@ -313,7 +251,11 @@ By sharing your story with Zariya, you can help us bridge the gap between report
         								</button>	
 			        				</div>
 			    				</div>
-      							<div class="form-group">    
+      							<div class="form-group">  
+      								<label class="control-label col-sm-10">
+      								Please note that all the information is kept private and is used only for internal records.</label>
+      							</div>
+      							<div class="form-group">
 			       					 <label for="firstName" class="control-label col-xs-4">First Name</label>
 			        				<div class="col-xs-5">
 			            				<input type="text" class="form-control" id="firstName" placeholder="First Name (Optional)">
@@ -340,7 +282,7 @@ By sharing your story with Zariya, you can help us bridge the gap between report
 			    				
 			    				<div class="form-group">
 			        				<div class="col-xs-offset-4 col-xs-10">
-			            				<button type="submit" class="btn btn-primary" onclick="onSubmitClick()">Submit</button>
+			            				<button type="submit" class="btn btn-primary" onclick="onSubmitClick()">SUBMIT</button>
 			       					</div>
 			    				</div>
 							</div>
