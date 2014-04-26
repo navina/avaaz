@@ -153,8 +153,8 @@ function onSubmission()
 
  	console.log("Inside for submission");
 
- 	alert(number);
- 	$.post( "/submitReport", 
+ 	window.open("/thankyou");
+ /*	$.post( "/submitReport", 
  		{ 	"person": person, 
  			"doYouKnow": doYouKnow, 
  			"firstTimeCrime": firstTimeCrime,
@@ -169,7 +169,7 @@ function onSubmission()
  			"lastName" : lastName,
  			"email": email,
  			"number" : number});
- 	event.preventDefault();
+ 	event.preventDefault(); */
  	
 }
 
