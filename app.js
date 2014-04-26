@@ -5,7 +5,7 @@
 
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
+var backend = require('./routes/backend');
 var home = require('./routes/home')
 var http = require('http');
 var path = require('path');
@@ -41,6 +41,9 @@ app.get('/contactUs', routes.contactUs);
 app.get('/sampleMap', routes.sampleMap);
 app.get('/index', routes.index);
 app.get('/info', routes.info);
+app.get('/connect', routes.connect);
+app.get('/track', routes.track);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

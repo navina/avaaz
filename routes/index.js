@@ -19,9 +19,13 @@ exports.submitReport = function(req, res){
 
 exports.submitReportData = function(req, res){
     var data = req.body;
-    var doYouKnowAssailant = data.doYouKnow;
-    console.log(data); // prints out entire json data
-    console.log(doYouKnowAssailant); // prints out a single field
+
+
+    var db = require('./backend.js');
+    console.log(data);
+    var result = db.processForm(data);
+    console.log("This is your report ID - " + result);
+
     res.send(200);
 }
 
@@ -48,6 +52,16 @@ exports.sampleMap = function(req, res){
 exports.info = function(req, res){
     res.render('info')    
 }
+
+exports.connect = function(req, res){
+    res.render('connect')    
+}
+
+exports.track = function(req, res){
+    res.render('track')    
+}
+
+
 
 exports.index = function(req, res){
     

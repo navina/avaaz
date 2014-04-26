@@ -73,6 +73,10 @@ body, h1, h2, h3, h4, h5, h6 {
 .benefit h3 {
   font-size: 1.5em;
 }
+.lato-section-header{
+  font-family: Lato;
+  font-weight:300;
+}
 
 @media screen and (max-width: 768px) {
   .navbar ul.nav li {
