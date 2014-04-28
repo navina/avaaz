@@ -153,7 +153,7 @@ function onSubmission()
 
  	console.log("Inside for submission");
 
- 	window.open("/thankyou");
+ 	window.open("/thankyou","_self");
  /*	$.post( "/submitReport", 
  		{ 	"person": person, 
  			"doYouKnow": doYouKnow, 
