@@ -79,6 +79,10 @@ exports.thankyou = function(req, res){
     res.render('thankyou')    
 }
 
+exports.api = function(req, res){
+    res.render('api')
+}
+
 
 exports.index = function(req, res){
     
