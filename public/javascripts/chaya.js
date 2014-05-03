@@ -37,47 +37,54 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 function onClickButton(){
 
-										if($("#location").val() == "")
-										{
-											alert("please enter value of location");
-										}
-										else
-										{
-											getGoogleMapApiEndpoint(document.getElementById('location').value);
-											document.getElementById('map-canvas').style.display = 'block';
-										}
-									}
+	if($("#location").val() == "")
+	{
+		alert("please enter value of location");
+	}
+	else
+	{
+		dropPin(document.getElementById('location').value);
+		document.getElementById('map-canvas').style.display = 'block';
+	}
+}
 
-									function getGoogleMapApiEndpoint(address) {
-									    var x = "https://maps.googleapis.com/maps/api/geocode/json?sensor=true&key=AIzaSyCSlmQ6fLKvbnU8u-H_Sg6qaRxEX_55nOg&address="+encodeURIComponent(address);
-									    
-									    $.ajax({url:x,success:function(result){
-									      var cooridnateObject = result.results[0].geometry.location
-									      var myLatlng = new google.maps.LatLng(cooridnateObject.lat,cooridnateObject.lng);
-									      dropPin(cooridnateObject)
-									    }});
+function getGoogleMapApiEndpoint(address, callback) {
+    var x = "https://maps.googleapis.com/maps/api/geocode/json?sensor=true&key=AIzaSyCSlmQ6fLKvbnU8u-H_Sg6qaRxEX_55nOg&address="+encodeURIComponent(address);
+    
+    $.ajax({url:x, success:function(result){
+      var cooridnateObject = result.results[0].geometry.location
+      var myLatlng = new google.maps.LatLng(cooridnateObject.lat,cooridnateObject.lng);
+      console.log("returning from the function")
+      callback(myLatlng)
+    }});
 
-									}
+}
 
-									function dropPin(cooridnateObject) {
-									  var myLatlng = cooridnateObject;
-									  var mapOptions = {
-									    zoom: 12,
-									    center: myLatlng
-									  }
-									  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+function dropPin(address) {
+  console.log("Address is "+address)
+  getGoogleMapApiEndpoint(address, function(cooridnateObject){
+	console.log("cooridnateObject" + cooridnateObject)			
+	var myLatlng = cooridnateObject;
+	var mapOptions = {
+	    zoom: 12,
+	    center: myLatlng
+	  }
+	  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-									  var marker = new google.maps.Marker({
-									      position: myLatlng,
-									      map: map,
-									      title: 'Sample Pin'
-									  });
-									  document.getElementById("locationLat").value = myLatlng.lat;
-									  document.getElementById("locationLng").value = myLatlng.lng;
-									  console.log(document.getElementById("locationLat").value);
-									  console.log(document.getElementById("locationLng").value);
+	  var marker = new google.maps.Marker({
+	      position: myLatlng,
+	      map: map,
+	      title: 'Sample Pin'
+	  });
+	  document.getElementById("locationLat").value = myLatlng.lat;
+	  document.getElementById("locationLng").value = myLatlng.lng;
+	  console.log(document.getElementById("locationLat").value);
+	  console.log(document.getElementById("locationLng").value);	
+  })
 
-									}
+  
+
+}
 
 
 function first_time_display()
