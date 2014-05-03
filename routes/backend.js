@@ -14,7 +14,7 @@ module.exports.fetchData = function(callback) {
 		connection.query('SELECT latitude, longitude, categories FROM incident', function(err, result) {
 			if(err)	throw err;
 			else
-				return callback(result);
+				callback(result);
 			connection.release();
 		});
 	});
