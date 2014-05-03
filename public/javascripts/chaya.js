@@ -81,8 +81,8 @@ function dropPin(address) {
 	      map: map,
 	      title: 'Sample Pin'
 	  });
-	  document.getElementById("locationLat").value = myLatlng.lat;
-	  document.getElementById("locationLng").value = myLatlng.lng;
+	  document.getElementById("locationLat").value = myLatlng.k;
+	  document.getElementById("locationLng").value = myLatlng.A;
 	  console.log(document.getElementById("locationLat").value);
 	  console.log(document.getElementById("locationLng").value);	
   })
