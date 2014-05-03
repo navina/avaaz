@@ -4,7 +4,10 @@ $(document).ready(function(){
 	
 	$("#date").datepicker();
 
-	$("#other_incident").click(function() {
+	$( "#date" ).datepicker("option", "dateFormat", "yy-mm-dd" );
+
+
+	$("#OTHER_INCIDENT").click(function() {
   		var isChecked = $(this).is(':checked');
   		if(isChecked)
     	{
@@ -153,23 +156,34 @@ function onSubmission()
 
  	console.log("Inside for submission");
 
- 	window.open("/thankyou","_self");
- /*	$.post( "/submitReport", 
- 		{ 	"person": person, 
- 			"doYouKnow": doYouKnow, 
- 			"firstTimeCrime": firstTimeCrime,
- 			"incident_list": incident_list,
- 			"otherIncidence": otherIncidence,
- 			"location" : location,
- 			"locationLat" : locationLat,
- 			"locationLng": locationLng,
- 			"date" : date,
- 			"comments" : comments,
- 			"firstName" : firstName,
- 			"lastName" : lastName,
- 			"email": email,
- 			"number" : number});
- 	event.preventDefault(); */
+ 	
+	console.log("Inside for submission");
+	event.preventDefault();
+
+	$.post( "/submitReport",
+	   {      "person": person,
+	        "doYouKnow": doYouKnow,
+	        "firstTimeCrime": firstTimeCrime,
+	        "incidentList": incident_list,
+	        "otherIncidence": otherIncidence,
+	        "location" : location,
+	        "locationLat" : locationLat,
+	        "locationLng": locationLng,
+	        "incidentDate" : date,
+	        "incidentTime" : time,
+	        "comments": comments,
+	        "firstName" : firstName,
+	        "lastName" : lastName,
+	        "email": email,
+	        "number" : number}, function(response, status, xhr){
+	             if(xhr.status == 200)
+	             {
+	                  window.open("/thankyou","_self");                   
+	             }                    
+        });
+     
+
+  
  	
 }
 
