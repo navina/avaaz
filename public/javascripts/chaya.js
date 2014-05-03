@@ -80,7 +80,7 @@ function onClickButton(){
 function first_time_display()
 {
 	var val = $('input[name=person]:checked').val();
-	if(val == "Survivor")
+	if(val == "SURVIVOR")
 	{
 		$("#first_time").show();
 	}
