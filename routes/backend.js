@@ -8,13 +8,13 @@ var pool  = mysql.createPool({
   port: '3306'
 });
 
-module.exports.fetchData = function() {
+module.exports.fetchData = function(callback) {
 	// Please fill in - we can't obviously fetch all records. Are we going to have a cap on it ??
 	pool.getConnection(function(err, connection) {
 		connection.query('SELECT latitude, longitude, categories FROM incident', function(err, result) {
 			if(err)	throw err;
 			else
-				return result;
+				return callback(result);
 			connection.release();
 		});
 	});
