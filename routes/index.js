@@ -19,14 +19,28 @@ exports.submitReport = function(req, res){
 
 exports.submitReportData = function(req, res){
     var data = req.body;
-
-
-    var db = require('./backend.js');
     console.log(data);
-    var result = db.processForm(data);
-    console.log("This is your report ID - " + result);
 
-    res.send(200);
+    try{
+
+    
+    var db = require('./backend.js');
+    
+    var result = db.processForm(data, function(incidentId){
+        console.log("This is your report ID - " + incidentId);    
+    });
+    
+
+    
+    }
+    catch(err){
+        console.log("Error Submitting");
+        throw err;
+    }
+
+    finally{
+        res.send(200);
+    }
 }
 
 exports.viewMap = function(req, res){
