@@ -13,8 +13,10 @@ module.exports.fetchData = function(callback) {
 	pool.getConnection(function(err, connection) {
 		connection.query('SELECT latitude, longitude, categories FROM incident', function(err, result) {
 			if(err)	throw err;
-			else
+			else {
+				//console.log(result.latitude);
 				callback(result);
+			}
 			connection.release();
 		});
 	});
