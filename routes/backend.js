@@ -10,6 +10,14 @@ var pool  = mysql.createPool({
 
 module.exports.fetchData = function() {
 	// Please fill in - we can't obviously fetch all records. Are we going to have a cap on it ??
+	pool.getConnection(function(err, connection) {
+		connection.query('SELECT latitude, longitude, categories FROM incident', function(err, result) {
+			if(err)	throw err;
+			else
+				return result;
+			connection.release();
+		});
+	});
 }
 
 module.exports.processForm = function(data, callback) {
