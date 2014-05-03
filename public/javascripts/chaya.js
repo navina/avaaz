@@ -4,8 +4,13 @@ $(document).ready(function(){
 	
 	$("#date").datepicker();
 
-	$( "#date" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
+	$("#date").datepicker( "option", "dateFormat", "yy-mm-dd" );
 
+
+	$("#location").focusout(function(){
+	onClickButton();
+	});
+});
 	$("#OTHER_INCIDENT").click(function() {
   		var isChecked = $(this).is(':checked');
   		if(isChecked)
@@ -19,7 +24,6 @@ $(document).ready(function(){
 
 	});
 	
-});
 
 var map;
 									
@@ -50,12 +54,14 @@ function onClickButton(){
 function getGoogleMapApiEndpoint(address, callback) {
     var x = "https://maps.googleapis.com/maps/api/geocode/json?sensor=true&key=AIzaSyCSlmQ6fLKvbnU8u-H_Sg6qaRxEX_55nOg&address="+encodeURIComponent(address);
     
-    $.ajax({url:x, success:function(result){
-      var cooridnateObject = result.results[0].geometry.location
+    $.ajax({
+    	url:x, 
+    	success:function(result){
+      var cooridnateObject = result.results[0].geometry.location;
       var myLatlng = new google.maps.LatLng(cooridnateObject.lat,cooridnateObject.lng);
-      console.log("returning from the function")
-      callback(myLatlng)
-    }});
+      console.log("returning from the function");
+      callback(myLatlng);
+  	}});
 
 }
 
@@ -101,16 +107,6 @@ function onSubmitClick() //to check for empty fields
 	onSubmission();	
 }
 
-function validateRadio(radios)
-{
-    for (i = 0; i < radios.length; ++ i)
-    {
-        if (radios [i].checked) 
-        	return 1;
-    }
-    return 0;
-}
-
 function onSubmission(event)
 {
 	var flag = true;
@@ -133,8 +129,9 @@ function onSubmission(event)
 
 	var firstTimeCrime;
 	
-	if(person == "Survivor")
+	if(person == "SURVIVOR")
 	{
+		$("#first_time").show();
 		if($('input[name=time]:checked').length<=0)
 		{	
 			flag = false;
@@ -153,7 +150,7 @@ function onSubmission(event)
 	}
 	else
 	{
-		firstTimeCrime = "Not Applicable";
+		firstTimeCrime = "X";
 	}
 
 	if($('input[name=assailant]:checked').length<=0)
@@ -229,10 +226,11 @@ function onSubmission(event)
 	var locationLat = $("#locationLat").val();
 	var locationLng = $("#locationLng").val();
 
-	if(locationLat == "" || locationLng == "")
+	/*if(locationLat == "" || locationLng == "")
 	{
-		getGoogleMapApiEndpoint($("#location").val());
-	}
+		flag = false;
+
+	}*/
 
 	var date = $("#date").val();
 	if(date == ""){
@@ -283,7 +281,9 @@ function onSubmission(event)
 	console.log("Inside for submission");
 	event.preventDefault();
 
-	$.post( "/submitReport",
+	if(flag)
+		window.open("/thankyou","_self");
+	/*$.post( "/submitReport",
 	   {      "person": person,
 	        "doYouKnow": doYouKnow,
 	        "firstTimeCrime": firstTimeCrime,
@@ -302,8 +302,12 @@ function onSubmission(event)
 	             if(xhr.status == 200)
 	             {
 	                  window.open("/thankyou","_self");                   
+	             }
+	             else
+	             {
+	             	alert("error");
 	             }                    
-        });
+        }); */
  	
 }
 
