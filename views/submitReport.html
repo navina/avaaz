@@ -37,25 +37,24 @@ By sharing your story with Zariya, you can help us bridge the gap between report
 			        				<label id="who_label" for="whoIsReporting" class="control-label col-xs-4">Who is reporting the incident ?
 			        				<span class="required_field">*</span><br /></label>
 									<div class="col-xs-5">
-										<input id="person_type" type="radio" name="person" value="Survivor" onclick="first_time_display()" required> Survivor<br>
-										<input type="radio" name="person" value="Friend_of_survivor" onclick="first_time_display()"> Friend of survivor<br>
-										<input type="radio" name="person" value="Relative_of_survivor" onclick="first_time_display()"> Relative of survivor<br>
-										<input type="radio" name="person" value="Not_related" onclick="first_time_display()"> Stranger<br>
+										<input type="radio" name="person" value="SURVIVOR" onclick="first_time_display()" required> Survivor<br>
+										<input type="radio" name="person" value="FRIEND_OF_SURVIVOR" onclick="first_time_display()"> Friend of survivor<br>
+										<input type="radio" name="person" value="RELATIVE_OF_SURVIVOR" onclick="first_time_display()"> Relative of survivor<br>
+										<input type="radio" name="person" value="NOT_RELATED" onclick="first_time_display()"> Stranger<br>
 			        				</div>
 			        			</div>	
 			        			<div class="form-group" id="first_time">	
 			        				 <label id="first_time_label" for="first_time" class="control-label col-xs-4">Is this the first time you are facing this crime?		<span class="required_field">*</span><br /></label>
-									<div class="col-xs-5">
+			        				 <div class="col-xs-5">
 										<input type="radio" name="time" value="Y"> Yes<br>
 										<input type="radio" name="time" value="N"> No<br>
-			        				</div>
-			    				</div>
+									</div>
+			        			</div>	
 			        			 <div class="form-group" id="whoIsReporting_div">
-			        				
 			        				<label id="whoIsReporting_label" for="whoIsReporting" class="control-label col-xs-4">Do you know the assailant ?<span class="required_field">*</span><br /></label>
 									<div class="col-xs-5">
-										<input type="radio" name="assailant" value="Yes" required> Yes<br>
-										<input type="radio" name="assailant" value="No"> No<br>
+										<input type="radio" name="assailant" value="Y" required> Yes<br>
+										<input type="radio" name="assailant" value="N"> No<br>
 			        				</div>
 			        			</div>
 			    				<div class="form-group">
@@ -95,15 +94,16 @@ By sharing your story with Zariya, you can help us bridge the gap between report
 										<div class="col-xs-5">
 											<em>Check all the applicable boxes:</em>
 											<br/>
-											<input type="checkbox" class="incident" name="incident" value="Eve Teasing" required> Eve Teasing<br>
-											<input type="checkbox" class="incident" name="incident" value="Voyeurism"> Voyeurism<br>
-											<input type="checkbox" class="incident" name="incident" value="Acid Violence"> Acid Violence<br>
-											<input type="checkbox" class="incident" name="incident" value="Stalking"> Stalking<br>
-											<input type="checkbox" class="incident" name="incident" value="Rape"> Rape<br>
-											<input type="checkbox" class="incident" name="incident" value="Disrobing"> Disrobing<br>
-											<input type="checkbox" class="incident" name="incident" value="Domestic Violence"> Domestic Violence<br>
-											<input type="checkbox" class="incident" name="incident" value="Marital Rape"> Marital Rape<br>
-											<input type="checkbox" class="incident" name="incident" id="other_incident" value="Other"> Other<br>
+
+											<input type="checkbox" class="incident" name="incident" value="EVE_TEASING"> Eve Teasing<br>
+											<input type="checkbox" class="incident" name="incident" value="VOYEURISM"> Voyeurism<br>
+											<input type="checkbox" class="incident" name="incident" value="ACID_VIOLENCE"> Acid Violence<br>
+											<input type="checkbox" class="incident" name="incident" value="STALKING"> Stalking<br>
+											<input type="checkbox" class="incident" name="incident" value="RAPE"> Rape<br>
+											<input type="checkbox" class="incident" name="incident" value="DISROBING"> Disrobing<br>
+											<input type="checkbox" class="incident" name="incident" value="DOMESTIC_VIOLENCE"> Domestic Violence<br>
+											<input type="checkbox" class="incident" name="incident" value="MARITAL_RAPE"> Marital Rape<br>
+											<input type="checkbox" class="incident" name="incident" id="OTHER_INCIDENT" value="Other"> Other<br>
 			        					</div>
 			        			</div>
 			        			<div class="form-group" id="other_div">

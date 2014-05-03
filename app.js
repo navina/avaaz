@@ -35,6 +35,7 @@ app.get('/home', routes.home);
 app.get('/submitReport', routes.submitReport);
 app.post('/submitReport', routes.submitReportData);
 app.get('/viewMap', routes.viewMap);
+app.get('/viewReport', routes.viewReport);
 app.get('/legalAdvise', routes.legalAdvise);
 app.get('/aboutUs', routes.aboutUs);
 app.get('/contactUs', routes.contactUs);
@@ -44,6 +45,7 @@ app.get('/info', routes.info);
 app.get('/connect', routes.connect);
 app.get('/track', routes.track);
 app.get('/thankyou', routes.thankyou);
+app.get('/api', routes.api);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

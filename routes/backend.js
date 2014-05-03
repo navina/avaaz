@@ -8,21 +8,31 @@ var pool  = mysql.createPool({
   port: '3306'
 });
 
-module.exports.fetchData = function() {
+module.exports.fetchData = function(callback) {
 	// Please fill in - we can't obviously fetch all records. Are we going to have a cap on it ??
+	pool.getConnection(function(err, connection) {
+		connection.query('SELECT latitude, longitude, categories FROM incident WHERE latitude != "" AND longitude != ""', function(err, result) {
+			if(err)	throw err;
+			else {
+				//console.log(result.latitude);
+				callback(result);
+			}
+			connection.release();
+		});
+	});
 }
 
-module.exports.processForm = function(data) {
+module.exports.processForm = function(data, callback) {
 	var reporterRelation = processReporterRelation(data.person);  // !! make this mandatory? - Needs to be consistent with Backend Enum strings!
-	var firstTime = data.firstTime; // !! make this mandatory ?
+	var firstTime = data.firstTimeCrime; // !! make this mandatory ?
     var doYouKnowAssailant = data.doYouKnow; // !! make this mandatory or give an option like don't want to disclose
     var incidentList = returnEmptyOnUndefined(data.incidentList); // !! make this mandatory ; otherwise what is the point of this data collection
     var otherIncidence = data.otherIncidence; // !! make this non-empty if no option is chosen from the list above
     var location = returnEmptyOnUndefined(data.location);
     var locationLat = returnEmptyOnUndefined(data.locationLat);
     var locationLng = returnEmptyOnUndefined(data.locationLng);
-    var incidentDate = returnCurrentDateOnUndefined(data.date);	// !! since it is defined as Not null, for now just put current time and date
-    var incidentTime  = returnCurrentTimeOnUndefined(data.time);
+    var incidentDate = returnCurrentDateOnUndefined(data.incidentDate);	// !! since it is defined as Not null, for now just put current time and date
+    var incidentTime  = returnCurrentTimeOnUndefined(data.incidentTime);
     var comments = returnEmptyOnUndefined(data.comments);
     var firstName = returnEmptyOnUndefined(data.firstName);
     var lastName = returnEmptyOnUndefined(data.lastName);
@@ -40,8 +50,8 @@ module.exports.processForm = function(data) {
     // !! incidentId should be returned to user in either an alert box or a new page , so that they can use this as reference in the future phases of our project
     // For example, if we have to redirect them to some help center then the authorities will require an ID for this report.
     // For now, we can use this auto-generated ID. We can later use more encoding to represent an reportIDString
-    var incidentId = createIncidentRecord(incidentList, incidentDate, incidentTime, location, locationLat, locationLng, comments, firstTime, doYouKnowAssailant, reporterRelation);
-    console.log("Inside processForm - " + incidentId);
+    createIncidentRecord(incidentList, incidentDate, incidentTime, location, locationLat, locationLng, comments, firstTime, doYouKnowAssailant, reporterRelation, function(incidentId){
+    	console.log("Inside processForm - " + incidentId);
     //Creating reporter's data
     if(firstName != '' || lastName != '' || email != '' || phone != '') {
     	var personId = createPersonRecord(firstName, lastName, email, phone);
@@ -49,8 +59,10 @@ module.exports.processForm = function(data) {
     		createRelationshipRecord(personId, incidentId);
     	}
     }
-
-	return incidentId;
+    callback(incidentId)
+	
+    });
+    
 }
 
 function createRelationshipRecord(personId, incidentId) {
@@ -83,7 +95,7 @@ function createPersonRecord(firstName, lastName, email, phone) {
 	});
 }
 
-function createIncidentRecord(incidentList, incidentDate, incidentTime, location, locationLat, locationLng, comments, firstTime, knownAssailant, reporterRelation) {
+function createIncidentRecord(incidentList, incidentDate, incidentTime, location, locationLat, locationLng, comments, firstTime, knownAssailant, reporterRelation, callback) {
 	var insertData = { 
 		categories: incidentList, 
 		incidentDate: incidentDate,
@@ -102,7 +114,7 @@ function createIncidentRecord(incidentList, incidentDate, incidentTime, location
 			if(err) throw err;
 			var id = result.insertId;
 			connection.release();
-			return id;
+			callback(id);
   		});
 	});
 
