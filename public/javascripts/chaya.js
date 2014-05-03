@@ -4,8 +4,7 @@ $(document).ready(function(){
 	
 	$("#date").datepicker();
 
-	$( "#date" ).datepicker("option", "dateFormat", "yy-mm-dd" );
-
+	$( "#date" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 
 	$("#OTHER_INCIDENT").click(function() {
   		var isChecked = $(this).is(':checked');
@@ -81,11 +80,7 @@ function dropPin(address) {
 	  console.log(document.getElementById("locationLat").value);
 	  console.log(document.getElementById("locationLng").value);	
   })
-
-  
-
 }
-
 
 function first_time_display()
 {
@@ -106,44 +101,166 @@ function onSubmitClick() //to check for empty fields
 	onSubmission();	
 }
 
-function onSubmission()
+function validateRadio(radios)
 {
-	var person = $('input[name=person]:checked').val(); //person who is reporting
-	
-	var doYouKnow = $('input[name=assailant]:checked').val(); //do you know assailant
-	
+    for (i = 0; i < radios.length; ++ i)
+    {
+        if (radios [i].checked) 
+        	return 1;
+    }
+    return 0;
+}
+
+function onSubmission(event)
+{
+	var flag = true;
+
+	if($('input[name=person]:checked').length<=0)
+	{	
+		flag = false;
+ 		alert("Please select who is reporting this incident");
+ 		$("#person_div").append("<span class='required_field required_div'>Required</span>");
+ 		$("#who_label").css("color","red");
+ 		//$("#collapseOne").addClass("in");
+	}
+	else
+	{
+		$("#who_label").css("color","black");
+		$("#person_div").children('.required_div').remove();
+		var person = $('input[name=person]:checked').val(); //person who is reporting
+		flag = true;
+	}
+
 	var firstTimeCrime;
 	
 	if(person == "Survivor")
 	{
-		firstTimeCrime = $('input[name=time]:checked').val(); //first time facing crime
+		if($('input[name=time]:checked').length<=0)
+		{	
+			flag = false;
+ 			alert("Please mention whether you are first time Survivor or not");
+ 			$("#first_time_label").css("color","red");
+ 			$("#first_time").append("<span class='required_field required_div'>Required</span>");
+		}
+		else
+		{
+			$("#first_time_label").css("color","black");
+			$("#first_time").children('.required_div').remove();
+			firstTimeCrime = $('input[name=time]:checked').val(); //first time facing crime
+			flag = true;
+		}
+			
 	}
 	else
 	{
-		firstTimeCrime = "Not Applicable"
+		firstTimeCrime = "Not Applicable";
 	}
-	
-	
+
+	if($('input[name=assailant]:checked').length<=0)
+	{	
+		flag = false;
+ 		alert("Please mention whether you know the Survivor or not");
+ 		$("#whoIsReporting_div").append("<span class='required_field required_div'>Required</span>");
+ 		$("#whoIsReporting_label").css("color","red");
+	}
+	else
+	{
+		$("#whoIsReporting_label").css("color","black");
+		$("#whoIsReporting_div").children('.required_div').remove();
+		var doYouKnow = $('input[name=assailant]:checked').val(); //do you know assailant
+		flag = true;
+	}
+
 	var incident_list="";
-	 $('.incident:checked').each(function() {
+
+    if ($("input[name='incident']:checked").length > 0){ 			// one ore more checkboxes are checked
+  		$('.incident:checked').each(function() {
           incident_list += $(this).val() + ",";
         });
         incident_list =  incident_list.slice(0,-1);
-    	//alert(incident_list);
-    
+        $("#whatIncidentToReport_label").css("color","black");
+		$("#whatIncidentToReport_div").children('.required_div').remove();
+        //alert(incident_list);
+	}
+	else{
+			flag = false;
+ 			alert("Please select one or more incident(s)");// no checkboxes are checked
+ 			$("#whatIncidentToReport_div").append("<span class='required_field required_div'>Required</span>");
+ 			$("#whatIncidentToReport_label").css("color","red");	
+ 			flag = true;
+	}	
+
     var otherIncidence="Not Applicable";
      
     if(incident_list.indexOf("Other")!=-1)
+    {
     	otherIncidence = $("#other").val();
+    	if(otherIncidence == "")
+    	{
+    		alert("please provide other incident");
+    		flag = false;
+    		$("#other_div").append("<span class='required_field required_div'>Required</span>");
+ 			$("#other_label").css("color","red");
+    	}
+    	else
+    	{
+    		flag = true;
+    		$("#other_div").children('.required_div').remove();
+ 			$("#other_label").css("color","black");
+    	}
+    }
  	
  	//alert(incident_description);
  	
 	var location = $("#location").val();
+	if(location == ""){
+		flag = false;
+		alert("Please enter your location");
+		$("#location_div").append("<span class='required_field required_div'>Required</span>");
+ 		$("#location_label").css("color","red");
+	}
+	else
+	{
+		$("#location_div").css("color","black");
+		$("#location_label").children('.required_div').remove();
+		flag = true;
+	}
+
 	var locationLat = $("#locationLat").val();
 	var locationLng = $("#locationLng").val();
 
+	if(locationLat == "" || locationLng == "")
+	{
+		getGoogleMapApiEndpoint($("#location").val());
+	}
+
 	var date = $("#date").val();
+	if(date == ""){
+		flag = false;
+		alert("please enter date of incident");
+		$("#date_div").append("<span class='required_field required_div'>Required</span>");
+ 		$("#date_label").css("color","red");
+	}
+	else
+	{
+		$("#date_div").css("color","black");
+		$("#date_label").children('.required_div').remove();
+		flag = true;
+	}
+
 	var time = $("#time").val();
+	if(time == ""){
+		flag = false;
+		alert("please enter time of incident");
+		$("#time_div").append("<span class='required_field required_div'>Required</span>");
+ 		$("#time_label").css("color","red");
+	}
+	else
+	{
+		$("#time_div").css("color","black");
+		$("#time_label").children('.required_div').remove();
+		flag = true;
+	}
 	
  	var comments = $("textarea#additional_info").val();
 
@@ -162,7 +279,6 @@ function onSubmission()
  		number = "Anonymous";
 
  	console.log("Inside for submission");
-
  	
 	console.log("Inside for submission");
 	event.preventDefault();
@@ -188,9 +304,6 @@ function onSubmission()
 	                  window.open("/thankyou","_self");                   
 	             }                    
         });
-     
-
-  
  	
 }
 

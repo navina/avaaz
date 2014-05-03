@@ -19,8 +19,9 @@ By sharing your story with Zariya, you can help us bridge the gap between report
 		<div class="panel-heading">
     		<h3 class="panel-title">Submit A New Report</h3>
 		</div>
+		<span style="padding-left:20px;padding-top:10px;display:block;">Questions highlighted in <span class="required_field">*</span> are required</span>
 		<div class="panel-body">
-			<form class="form-horizontal">
+			<form class="form-horizontal" id="reportForm" name="reportForm">
 				<div class="panel-group" id="accordion">
 					<div class="panel panel-default">
     					<div class="panel-heading">
@@ -32,8 +33,9 @@ By sharing your story with Zariya, you can help us bridge the gap between report
     					</div>
     					<div id="collapseOne" class="panel-collapse collapse in">
       						<div class="panel-body">
-      							<div class="form-group">    
-			        				<label for="whoIsReporting" class="control-label col-xs-4">Who is reporting the incident ?<br/></label>
+      							<div class="form-group" id="person_div">    
+			        				<label id="who_label" for="whoIsReporting" class="control-label col-xs-4">Who is reporting the incident ?
+			        				<span class="required_field">*</span><br /></label>
 									<div class="col-xs-5">
 										<input type="radio" name="person" value="SURVIVOR" onclick="first_time_display()" required> Survivor<br>
 										<input type="radio" name="person" value="FRIEND_OF_SURVIVOR" onclick="first_time_display()"> Friend of survivor<br>
@@ -41,21 +43,20 @@ By sharing your story with Zariya, you can help us bridge the gap between report
 										<input type="radio" name="person" value="NOT_RELATED" onclick="first_time_display()"> Stranger<br>
 			        				</div>
 			        			</div>	
-			        			 <div class="form-group">
-			        				
-			        				<label for="whoIsReporting" class="control-label col-xs-4">Do you know the assailant?<br/></label>
+			        			<div class="form-group" id="first_time">	
+			        				 <label id="first_time_label" for="first_time" class="control-label col-xs-4">Is this the first time you are facing this crime?		<span class="required_field">*</span><br /></label>
+			        				 <div class="col-xs-5">
+										<input type="radio" name="time" value="Y"> Yes<br>
+										<input type="radio" name="time" value="N"> No<br>
+									</div>
+			        			</div>	
+			        			 <div class="form-group" id="whoIsReporting_div">
+			        				<label id="whoIsReporting_label" for="whoIsReporting" class="control-label col-xs-4">Do you know the assailant ?<span class="required_field">*</span><br /></label>
 									<div class="col-xs-5">
-										<input type="radio" name="assailant" value="Y"> Yes<br>
+										<input type="radio" name="assailant" value="Y" required> Yes<br>
 										<input type="radio" name="assailant" value="N"> No<br>
 			        				</div>
 			        			</div>
-			        			 <div class="form-group" id="first_time">	
-			        				 <label for="whoIsReporting" class="control-label col-xs-4">Is this the first time you are facing this crime?<br/></label>
-									<div class="col-xs-5">
-										<input type="radio" name="time" value="Y"> Yes<br>
-										<input type="radio" name="time" value="N"> No<br>
-			        				</div>
-			    				</div>
 			    				<div class="form-group">
 			    					<div class="col-xs-5" style="width: 60px;">
 			    						<button type="button" class="btn btn-info btn-sm" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
@@ -88,11 +89,12 @@ By sharing your story with Zariya, you can help us bridge the gap between report
         								</button>	
 			        				</div>
 			    				</div>
-      							<div class="form-group">
-									<label for="whatIncidentToReport" class="control-label col-xs-4">What incident would you like to report?<br/></label>
+      							<div class="form-group" id="whatIncidentToReport_div">
+									<label id="whatIncidentToReport_label" for="whatIncidentToReport" class="control-label col-xs-4">What incident would you like to report?<span class="required_field">*</span><br /></label>
 										<div class="col-xs-5">
 											<em>Check all the applicable boxes:</em>
 											<br/>
+
 											<input type="checkbox" class="incident" name="incident" value="EVE_TEASING"> Eve Teasing<br>
 											<input type="checkbox" class="incident" name="incident" value="VOYEURISM"> Voyeurism<br>
 											<input type="checkbox" class="incident" name="incident" value="ACID_VIOLENCE"> Acid Violence<br>
@@ -105,7 +107,7 @@ By sharing your story with Zariya, you can help us bridge the gap between report
 			        					</div>
 			        			</div>
 			        			<div class="form-group" id="other_div">
-			    					<label for="other" class="control-label col-xs-4">Any other type of Incident</label>
+			    					<label id="other_label" for="other" class="control-label col-xs-4">Any other type of Incident</label>
 			        				<div class="col-xs-5">
 			            				<input type="text" class="form-control" id="other" placeholder="Enter the incident">
 			        				</div>
@@ -143,10 +145,10 @@ By sharing your story with Zariya, you can help us bridge the gap between report
 			        				</div>
 			    				</div>
 			    				
-      							<div class="form-group">
-      								<label for="location" class="control-label col-xs-4">Location</label>
+      							<div class="form-group" id="location_div">
+      								<label id="location_label" for="location" class="control-label col-xs-4">Location<span class="required_field">*</span></label>
       								<div class="col-xs-5">
-			            					<input type="text" class="form-control" name="location" id="location" placeholder="Enter your location" />
+			            					<input type="text" class="form-control" name="location" id="location" placeholder="Enter your location" required />
 			        					</div>
 			        					
 									<button type="button" class="btn btn-success" onclick="onClickButton()">Go</button>
@@ -159,17 +161,17 @@ By sharing your story with Zariya, you can help us bridge the gap between report
   								<input type="hidden" id="locationLat" />
   								<input type="hidden" id="locationLng" />
 			    				
-			    				<div class="form-group">
-			    					<label for="time" class="control-label col-xs-4">Time of incident</label>
+			    				<div class="form-group" id="time_div">
+			    					<label id="time_label" for="time" class="control-label col-xs-4">Time of incident<span class="required_field">*</span></label>
 			        					<div class="col-xs-5">
-			            					<input type="time" class="form-control" id="time" />
+			            					<input type="time" class="form-control" id="time" required />
 			        					</div>
 			    				</div>
 			    				
-			    				<div class="form-group">
-			    					<label for="date" class="control-label col-xs-4">Date of incident</label>
+			    				<div class="form-group" id="date_div">
+			    					<label id="date_label" for="date" class="control-label col-xs-4">Date of incident<span class="required_field">*</span></label>
 			        					<div class="col-xs-5">
-			            					<input type="text" class="form-control" id="date" />
+			            					<input type="text" class="form-control" id="date" required />
 			        					</div>
 			        			</div>
 			        			<div class="form-group">
