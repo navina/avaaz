@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS incident ( \
 	longitude VARCHAR(50), \
 	comment TEXT, \
 	mediaId INT REFERENCES content (id), \
-	firstTime ENUM('Y', 'N', 'X') NOT NULL COMMENT 'X means the user did not provide an answer', \
-	knownAssailant ENUM('Y', 'N') NOT NULL, \
+	firstTime ENUM('Y', 'N', 'YES', 'NO', 'X') NOT NULL COMMENT 'X means the user did not provide an answer', \
+	knownAssailant ENUM('Y', 'N', 'YES', 'NO') NOT NULL, \
 	reporterRelation ENUM('SURVIVOR', 'FRIEND_OF_SURVIVOR', 'RELATIVE_OF_SURVIVOR', 'NOT_RELATED') NOT NULL
 );
 
