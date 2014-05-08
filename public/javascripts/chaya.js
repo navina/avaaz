@@ -284,9 +284,8 @@ function onSubmission(event)
 	console.log("Inside for submission");
 	event.preventDefault();
 
-	if(flag)
-		window.open("/thankyou","_self");
-	/*$.post( "/submitReport",
+	
+	$.post( "/submitReport",
 	   {      "person": person,
 	        "doYouKnow": doYouKnow,
 	        "firstTimeCrime": firstTimeCrime,
@@ -310,7 +309,7 @@ function onSubmission(event)
 	             {
 	             	alert("error");
 	             }                    
-        }); */
+        });
  	
 }
 
