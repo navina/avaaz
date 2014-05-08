@@ -10,8 +10,8 @@ $(document).ready(function(){
 	$("#location").focusout(function(){
 	onClickButton();
 	});
-});
-	$("#OTHER_INCIDENT").click(function() {
+
+	$("#Other").click(function() {
   		var isChecked = $(this).is(':checked');
   		if(isChecked)
     	{
@@ -23,6 +23,9 @@ $(document).ready(function(){
     	}
 
 	});
+});
+
+
 	
 
 var map;
