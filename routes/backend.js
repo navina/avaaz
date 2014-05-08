@@ -20,10 +20,12 @@ var invalidFieldValue = function(fieldName, itemSet, item) {
 module.exports.fetchData = function(callback) {
 	// Please fill in - we can't obviously fetch all records. Are we going to have a cap on it ??
 	pool.getConnection(function(err, connection) {
-		connection.query('SELECT latitude, longitude, categories FROM incident', function(err, result) {
+		connection.query('SELECT latitude, longitude, categories FROM incident WHERE latitude != "" AND longitude != ""', function(err, result) {
 			if(err)	throw err;
-			else
+			else {
+				//console.log(result.latitude);
 				callback(result);
+			}
 			connection.release();
 		});
 	});

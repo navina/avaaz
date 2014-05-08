@@ -3,7 +3,7 @@
     <div class="col-lg-12 text-center v-center">
       <h1>Developer Center</h1>
  		<div class="col-md-8 col-md-offset-2 justified">	   
- 			<h1 class="lato-section-header">Submitting A Report</h1>
+ 			<a href="#submitReport"><h1 class="lato-section-header">Submitting A Report</h1></a>
 			Submit data which is required to report an incident
 			<h1 class="lato-section-header">Request URL</h1>
 			POST: <a href="http://54.186.110.31/submitReport">http://54.186.110.31/submitReport</a> <br/>
@@ -32,8 +32,8 @@
 	        </tr>
 	        <tr>
 	            <td>firstTimeCrime</td>
-	            <td>ENUM: <br/>Y, N<br/>This field takes one of the above mentioned values</td>
-	            <td>To indicate whether is a first time crime. If this field is left blank, we consider the question as Not Applicable</td>
+	            <td>ENUM: <br/>Y, N, X<br/>This field takes one of the above mentioned values</td>
+	            <td>Setting the field to X means that the question is not applicable</td>
 	            <td>NO</td>
 	        </tr>
 	        <tr>
@@ -56,27 +56,27 @@
 	        </tr>
 	        <tr>
 	            <td>locationLat</td>
-	            <td>float 
+	            <td>String 
 	            <td>Latitude of the location</td>
-	            <td>NO</td>
+	            <td>YES</td>
 	        </tr>
 	        <tr>
 	            <td>locationLng</td>
-	            <td>float 
+	            <td>String 
 	            <td>Longitude of the location</td>
-	            <td>NO</td>
+	            <td>YES</td>
 	        </tr>
 	        <tr>
 	            <td>incidentDate</td>
 	            <td>String: Format YYYY-MM-DD  <br/> Eg: 2013-02-13
 	            <td>Date of the incident</td>
-	            <td>NO</td>
+	            <td>YES</td>
 	        </tr>
 	        <tr>
 	            <td>incidentTime</td>
-	            <td>String: Format HH:MM:SS  <br/> Eg: 12:23:11
+	            <td>String: Format HH:MM  <br/> Eg: 12:23
 	            <td>Time of the incident</td>
-	            <td>NO</td>
+	            <td>YES</td>
 	        </tr>
 	        <tr>
 	            <td>comments</td>
@@ -117,7 +117,53 @@
 			NOTE: sampleDataRequest.json can be found <a href="https://github.com/navina/avaaz/blob/master/public/sampleDataRequest.json">here</a>
 			<br/>
 			<br/>
-		    </div>
+
+			<a href="#viewReport"><h1 class="lato-section-header">Get Reported Incidents</h1></a>
+			Returns the Latitude, Longitude and Category of all reported incidents
+			<h1 class="lato-section-header">Request URL</h1>
+			GET: <a href="http://54.186.110.31/viewReport">http://54.186.110.31/viewReport</a> <br/>
+			<h1 class="lato-section-header">Request parameters</h1>
+			Not Applicable
+			<h1 class="lato-section-header">Response fields</h1>
+			<table class="table table-striped table-bordered table-condensed">
+ 			<thead>
+        	<tr>
+	            <th>Field</th>
+	            <th>Description</th> 
+        	</tr>
+    		</thead>
+    		<tbody>
+	        <tr>
+	            <td>latitude</td>
+	            <td>Latitude of the location</td>
+	        </tr>
+	        <tr>
+	            <td>longitude</td>
+	            <td>Longitude of the location</td>
+	        </tr>
+	        <tr>
+	            <td>categories</td>
+	            <td>category of the incident</td>
+	        </tr>
+	    	</table>
+			<h1 class="lato-section-header">Sample Usage</h1>
+			 Using cURL: curl http://54.186.110.31/viewReport 
+			<h1 class="lato-section-header">Sample Response</h1>
+			<code>
+			  {
+			    "latitude": "19.1171389",
+			    "longitude": "72.846563",
+			    "categories": "ACID_VIOLENCE"
+			  },<br/>
+			  {
+			    "latitude": "19.05",
+			    "longitude": "72.8333",
+			    "categories": "EVE_TEASING,STALKING,RAPE"
+			  }
+			</code>
+			<br/>
+			<br/>
+	    </div>
     </div>
   </div>
 </div>     

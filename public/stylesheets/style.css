@@ -12,3 +12,9 @@ a {
 	padding-bottom: 10px !important;
 	margin-bottom: 10px !important;
 }
+
+.required_field
+{
+	color:red;
+	font-weight: bold;
+}

@@ -50,6 +50,7 @@ app.get('/home', routes.home);
 app.get('/submitReport', routes.submitReport);
 app.post('/submitReport', routes.submitReportData);
 app.get('/viewMap', routes.viewMap);
+app.get('/viewReport', routes.viewReport);
 app.get('/legalAdvise', routes.legalAdvise);
 app.get('/aboutUs', routes.aboutUs);
 app.get('/contactUs', routes.contactUs);

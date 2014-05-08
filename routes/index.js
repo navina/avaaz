@@ -35,6 +35,19 @@ exports.submitReportData = function(req, res){
     }
 }
 
+
+exports.viewReport = function(req,res){
+
+    var db = require('./backend.js');
+    console.log("inside view report");
+    db.fetchData(function(result){
+        console.log("This is your report result - " + result);    
+        res.send(result);
+    });
+
+
+}
+
 exports.viewMap = function(req, res){
 	res.render('viewMap')
 }
