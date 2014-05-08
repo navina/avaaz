@@ -22,24 +22,16 @@ exports.submitReportData = function(req, res){
     console.log(data);
 
     try{
-
+        var db = require('./backend.js');
     
-    var db = require('./backend.js');
-    
-    var result = db.processForm(data, function(incidentId){
-        console.log("This is your report ID - " + incidentId);    
-    });
-    
-
-    
+        var result = db.processForm(data, function(incidentId){
+            console.log("This is your report ID - " + incidentId);    
+        });
     }
     catch(err){
-        console.log("Error Submitting");
+        console.log(err);
+        res.send(500); 
         throw err;
-    }
-
-    finally{
-        res.send(200);
     }
 }
 
