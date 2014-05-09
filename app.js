@@ -27,23 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-	app.use(function(err, req, res, next) {
-		res.status(err.status || 500);
-		res.render('error', {
-			message: err.message,
-			error: err
-		});
-	});
-  //app.use(express.errorHandler());
+  app.use(express.errorHandler());
 }
-
-app.use(function(err, req, res, next) {
-	res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
 
 app.get('/', routes.home);
 app.get('/home', routes.home);

@@ -87,6 +87,7 @@ module.exports.processForm = function(data, callback) {
     	incidentList += "," + otherIncidence;
     }
 
+    console.log("HERE -======== " + data);
     // !! incidentId should be returned to user in either an alert box or a new page , so that they can use this as reference in the future phases of our project
     // For example, if we have to redirect them to some help center then the authorities will require an ID for this report.
     // For now, we can use this auto-generated ID. We can later use more encoding to represent an reportIDString
