@@ -21,6 +21,20 @@ module.exports.fetchData = function(callback) {
 	});
 }
 
+module.exports.fetchDataFromId = function(id, callback) {
+	// Please fill in - we can't obviously fetch all records. Are we going to have a cap on it ??
+	pool.getConnection(function(err, connection) {
+		connection.query('SELECT * FROM incident WHERE id ='+id, function(err, result) {
+			if(err)	throw err;
+			else {
+				//console.log(result.latitude);
+				callback(result);
+			}
+			connection.release();
+		});
+	});
+}
+
 module.exports.processForm = function(data, callback) {
 	var reporterRelation = processReporterRelation(data.person);  // !! make this mandatory? - Needs to be consistent with Backend Enum strings!
 	var firstTime = data.firstTimeCrime; // !! make this mandatory ?

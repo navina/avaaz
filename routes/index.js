@@ -29,13 +29,22 @@ exports.submitReportData = function(req, res){
 
 
 exports.viewReport = function(req,res){
-
     var db = require('./backend.js');
     console.log("inside view report");
-    db.fetchData(function(result){
+    var id = req.query.id
+    if(id){
+        db.fetchDataFromId(id, function(result){
         console.log("This is your report result - " + result);    
         res.send(result);
-    });
+    });    
+    }else{
+        db.fetchData(function(result){
+        console.log("This is your report result - " + result);    
+        res.send(result);
+    });    
+    }
+    
+    
 
 
 }
