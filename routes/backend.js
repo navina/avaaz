@@ -1,4 +1,3 @@
-
 var mysql = require('mysql');
 var pool  = mysql.createPool({
   host     : 'localhost',
@@ -11,7 +10,7 @@ var pool  = mysql.createPool({
 module.exports.fetchData = function(callback) {
 	// Please fill in - we can't obviously fetch all records. Are we going to have a cap on it ??
 	pool.getConnection(function(err, connection) {
-		connection.query('SELECT latitude, longitude, categories FROM incident WHERE latitude != "" AND longitude != ""', function(err, result) {
+		connection.query('SELECT latitude, longitude, categories FROM incident WHERE latitude != "" AND longitude != "" AND categories != ""', function(err, result) {
 			if(err)	throw err;
 			else {
 				//console.log(result.latitude);
@@ -68,7 +67,7 @@ module.exports.processForm = function(data, callback) {
     	}
     }
     callback(incidentId)
-	
+
     });
     
 }
