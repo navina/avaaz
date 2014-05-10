@@ -39,8 +39,16 @@ module.exports.processForm = function(data, callback) {
     var email = returnEmptyOnUndefined(data.email);
     var phone = returnEmptyOnUndefined(data.number);
 
-    if(incidentList.indexOf('Other') != -1) {
-    	incidentList = otherIncidence;
+    
+
+    if(otherIncidence){
+    	if(incidentList){
+    		incidentList = incidentList + "," + otherIncidence
+    	}
+    	else{
+    		incidentList = otherIncidence
+    	}	
+
     }
 
     if(firstTime == undefined)
