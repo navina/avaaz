@@ -6,6 +6,10 @@ $(document).ready(function(){
 
 	$( "#date" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 
+	$("#location").focusout(function(){ 
+		onClickButton(); 
+	});
+
 	$("#OTHER_INCIDENT").click(function() {
   		var isChecked = $(this).is(':checked');
   		if(isChecked)
