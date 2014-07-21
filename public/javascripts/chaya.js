@@ -66,7 +66,7 @@ function getGoogleMapApiEndpoint(address, callback) {
 function dropPin(address) {
   console.log("Address is "+address)
   getGoogleMapApiEndpoint(address, function(cooridnateObject){
-	console.log("cooridnateObject" + cooridnateObject)			
+	console.log("cooridnateObject" + cooridnateObject)	
 	var myLatlng = cooridnateObject;
 	var mapOptions = {
 	    zoom: 12,
@@ -102,7 +102,7 @@ function first_time_display()
 function onSubmitClick() //to check for empty fields
 {
 	flag = true;
-	onSubmission();	
+	onSubmission(event);	
 }
 
 function validateRadio(radios)
@@ -134,7 +134,7 @@ function onSubmission(event)
 		var person = $('input[name=person]:checked').val(); //person who is reporting
 		flag = true;
 	}
-
+	//alert("person" + person);
 	var firstTimeCrime;
 	
 	if(person == "Survivor")
@@ -196,7 +196,7 @@ function onSubmission(event)
 
     var otherIncidence="Not Applicable";
      
-    if(incident_list.indexOf("Other")!=-1)
+    if(incident_list.indexOf("OTHER_INCIDENT")!=-1)
     {
     	otherIncidence = $("#other").val();
     	if(otherIncidence == "")
@@ -229,6 +229,7 @@ function onSubmission(event)
 		$("#location_label").children('.required_div').remove();
 		flag = true;
 	}
+	//alert("location" + location);
 
 	var locationLat = $("#locationLat").val();
 	var locationLng = $("#locationLng").val();
@@ -237,6 +238,8 @@ function onSubmission(event)
 	{
 		getGoogleMapApiEndpoint($("#location").val());
 	}
+
+	//alert(locationLat + " " + locationLng);
 
 	var date = $("#date").val();
 	if(date == ""){
@@ -252,6 +255,8 @@ function onSubmission(event)
 		flag = true;
 	}
 
+	//alert("Date" + date);
+
 	var time = $("#time").val();
 	if(time == ""){
 		flag = false;
@@ -265,6 +270,8 @@ function onSubmission(event)
 		$("#time_label").children('.required_div').remove();
 		flag = true;
 	}
+
+	//alert("time" + time);
 	
  	var comments = $("textarea#additional_info").val();
 
@@ -284,9 +291,9 @@ function onSubmission(event)
 
  	console.log("Inside for submission");
  	
-	console.log("Inside for submission");
 	event.preventDefault();
-
+	
+	//alert("before post");
 	$.post( "/submitReport",
 	   {      "person": person,
 	        "doYouKnow": doYouKnow,
@@ -295,7 +302,7 @@ function onSubmission(event)
 	        "otherIncidence": otherIncidence,
 	        "location" : location,
 	        "locationLat" : locationLat,
-	        "locationLng": locationLng,
+	        "locationLng": 3.14,
 	        "incidentDate" : date,
 	        "incidentTime" : time,
 	        "comments": comments,
@@ -306,7 +313,7 @@ function onSubmission(event)
 	             if(xhr.status == 200)
 	             {
 	                  window.open("/thankyou","_self");                   
-	             }                    
+	             }                  
         });
  	
 }
