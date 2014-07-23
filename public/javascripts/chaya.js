@@ -57,8 +57,8 @@ function getGoogleMapApiEndpoint(address, callback) {
     $.ajax({url:x, success:function(result){
       var cooridnateObject = result.results[0].geometry.location
       var myLatlng = new google.maps.LatLng(cooridnateObject.lat,cooridnateObject.lng);
-      console.log("returning from the function")
-      callback(myLatlng)
+      
+      callback(cooridnateObject)
     }});
 
 }
@@ -66,8 +66,8 @@ function getGoogleMapApiEndpoint(address, callback) {
 function dropPin(address) {
   console.log("Address is "+address)
   getGoogleMapApiEndpoint(address, function(cooridnateObject){
-	console.log("cooridnateObject" + cooridnateObject)	
-	var myLatlng = cooridnateObject;
+	
+	var myLatlng = new google.maps.LatLng(cooridnateObject.lat,cooridnateObject.lng);
 	var mapOptions = {
 	    zoom: 12,
 	    center: myLatlng
@@ -79,8 +79,9 @@ function dropPin(address) {
 	      map: map,
 	      title: 'Sample Pin'
 	  });
-	  document.getElementById("locationLat").value = myLatlng.k;
-	  document.getElementById("locationLng").value = myLatlng.A;
+
+	  document.getElementById("locationLat").value = cooridnateObject.lat;
+	  document.getElementById("locationLng").value = cooridnateObject.lng;
 	  console.log(document.getElementById("locationLat").value);
 	  console.log(document.getElementById("locationLng").value);	
   })
@@ -157,7 +158,7 @@ function onSubmission(event)
 	}
 	else
 	{
-		firstTimeCrime = "Not Applicable";
+		firstTimeCrime = "X";
 	}
 
 	if($('input[name=assailant]:checked').length<=0)
@@ -302,7 +303,7 @@ function onSubmission(event)
 	        "otherIncidence": otherIncidence,
 	        "location" : location,
 	        "locationLat" : locationLat,
-	        "locationLng": 3.14,
+	        "locationLng": locationLng,
 	        "incidentDate" : date,
 	        "incidentTime" : time,
 	        "comments": comments,
