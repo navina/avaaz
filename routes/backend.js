@@ -9,6 +9,7 @@ var pool  = mysql.createPool({
 
 module.exports.fetchData = function(callback) {
 	// Please fill in - we can't obviously fetch all records. Are we going to have a cap on it ??
+	//fetching non null data to make it plottable on map
 	pool.getConnection(function(err, connection) {
 		connection.query('SELECT latitude, longitude, categories FROM incident WHERE latitude != "" AND longitude != "" AND categories != ""', function(err, result) {
 			if(err)	throw err;
@@ -23,6 +24,7 @@ module.exports.fetchData = function(callback) {
 
 module.exports.fetchDataFromId = function(id, callback) {
 	// Please fill in - we can't obviously fetch all records. Are we going to have a cap on it ??
+	//Fetching all the data for now
 	pool.getConnection(function(err, connection) {
 		connection.query('SELECT * FROM incident WHERE id ='+id, function(err, result) {
 			if(err)	throw err;
