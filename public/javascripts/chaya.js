@@ -136,7 +136,7 @@ function onSubmission(event)
 		flag = true;
 	}
 	//alert("person" + person);
-	var firstTimeCrime;
+	var firstTimeCrime = "X";
 	
 	if(person == "Survivor")
 	{
@@ -155,10 +155,6 @@ function onSubmission(event)
 			flag = true;
 		}
 			
-	}
-	else
-	{
-		firstTimeCrime = "X";
 	}
 
 	if($('input[name=assailant]:checked').length<=0)
@@ -276,19 +272,10 @@ function onSubmission(event)
 	
  	var comments = $("textarea#additional_info").val();
 
- 	var firstName = $("#firstName").val();
- 	var lastName = $("#lastName").val();
- 	var email = $("#email").val();
- 	var number = $("#number").val();
-
- 	if(firstName == "")
- 		firstName = "Anonymous";
- 	if(lastName == "")
- 		lastName = "Anonymous";
- 	if(email == "")
- 		email = "Anonymous";
- 	if(number == "")
- 		number = "Anonymous";
+ 	var firstName = $("#firstName").val() == "" ? undefined :  $("#firstName").val();
+ 	var lastName = $("#lastName").val() == "" ? undefined :  $("#lastName").val();
+ 	var email = $("#email").val() == "" ? undefined :  $("#email").val();
+ 	var number = $("#number").val() == "" ? undefined :  $("#number").val();
 
  	console.log("Inside for submission");
  	
