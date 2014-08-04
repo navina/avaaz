@@ -102,7 +102,6 @@ function first_time_display()
 
 function onSubmitClick() //to check for empty fields
 {
-	flag = true;
 	onSubmission(event);	
 }
 
@@ -119,11 +118,15 @@ function validateRadio(radios)
 function onSubmission(event)
 {
 	var flag = true;
+	$("#errorBox").css("display","none");
+	$("#errorBox").text("");
+	var errorBox_message = "<ul>"
 
 	if($('input[name=person]:checked').length<=0)
 	{	
 		flag = false;
- 		alert("Please select who is reporting this incident");
+ 		//alert("Please select who is reporting this incident");
+ 		errorBox_message += "<li style='color:red;float:left; '>" + "Please select who is reporting this incident" + '</li><br>';
  		$("#person_div").append("<span class='required_field required_div'>Required</span>");
  		$("#who_label").css("color","red");
  		//$("#collapseOne").addClass("in");
@@ -133,17 +136,17 @@ function onSubmission(event)
 		$("#who_label").css("color","black");
 		$("#person_div").children('.required_div').remove();
 		var person = $('input[name=person]:checked').val(); //person who is reporting
-		flag = true;
 	}
 	//alert("person" + person);
 	var firstTimeCrime;
 	
-	if(person == "Survivor")
+	if(person == "SURVIVOR")
 	{
 		if($('input[name=time]:checked').length<=0)
 		{	
 			flag = false;
- 			alert("Please mention whether you are first time Survivor or not");
+ 			//alert("Please mention whether you are first time Survivor or not");
+ 			errorBox_message += "<li style='color:red;float:left; '>" + "Please mention whether you are first time Survivor or not" + '</li><br>';
  			$("#first_time_label").css("color","red");
  			$("#first_time").append("<span class='required_field required_div'>Required</span>");
 		}
@@ -152,7 +155,6 @@ function onSubmission(event)
 			$("#first_time_label").css("color","black");
 			$("#first_time").children('.required_div').remove();
 			firstTimeCrime = $('input[name=time]:checked').val(); //first time facing crime
-			flag = true;
 		}
 			
 	}
@@ -164,7 +166,8 @@ function onSubmission(event)
 	if($('input[name=assailant]:checked').length<=0)
 	{	
 		flag = false;
- 		alert("Please mention whether you know the Survivor or not");
+ 		//alert("Please mention whether you know the Survivor or not");
+ 		errorBox_message += "<li style='color:red;float:left; '>" + "Please mention whether you know the assailant or not" + '</li><br>';
  		$("#whoIsReporting_div").append("<span class='required_field required_div'>Required</span>");
  		$("#whoIsReporting_label").css("color","red");
 	}
@@ -173,7 +176,6 @@ function onSubmission(event)
 		$("#whoIsReporting_label").css("color","black");
 		$("#whoIsReporting_div").children('.required_div').remove();
 		var doYouKnow = $('input[name=assailant]:checked').val(); //do you know assailant
-		flag = true;
 	}
 
 	var incident_list="";
@@ -189,10 +191,10 @@ function onSubmission(event)
 	}
 	else{
 			flag = false;
- 			alert("Please select one or more incident(s)");// no checkboxes are checked
+ 			//alert("Please select one or more incident(s)");// no checkboxes are checked
+ 			errorBox_message += "<li style='color:red;float:left; '>" +  "Please select one or more incident(s)" + '</li><br>';
  			$("#whatIncidentToReport_div").append("<span class='required_field required_div'>Required</span>");
  			$("#whatIncidentToReport_label").css("color","red");	
- 			flag = true;
 	}	
 
     var otherIncidence="Not Applicable";
@@ -202,14 +204,14 @@ function onSubmission(event)
     	otherIncidence = $("#other").val();
     	if(otherIncidence == "")
     	{
-    		alert("please provide other incident");
+    		//alert("please provide other incident");
+    		errorBox_message += "<li style='color:red;float:left; '>" + "Please provide other incident" +'</li><br>';
     		flag = false;
     		$("#other_div").append("<span class='required_field required_div'>Required</span>");
  			$("#other_label").css("color","red");
     	}
     	else
     	{
-    		flag = true;
     		$("#other_div").children('.required_div').remove();
  			$("#other_label").css("color","black");
     	}
@@ -220,7 +222,8 @@ function onSubmission(event)
 	var location = $("#location").val();
 	if(location == ""){
 		flag = false;
-		alert("Please enter your location");
+		//alert("Please enter your location");
+		errorBox_message += "<li style='color:red;float:left; '>" + "Please enter your location" +'</li><br>';
 		$("#location_div").append("<span class='required_field required_div'>Required</span>");
  		$("#location_label").css("color","red");
 	}
@@ -228,7 +231,6 @@ function onSubmission(event)
 	{
 		$("#location_div").css("color","black");
 		$("#location_label").children('.required_div').remove();
-		flag = true;
 	}
 	//alert("location" + location);
 
@@ -245,7 +247,8 @@ function onSubmission(event)
 	var date = $("#date").val();
 	if(date == ""){
 		flag = false;
-		alert("please enter date of incident");
+		//alert("please enter date of incident");
+		errorBox_message += "<li style='color:red;float:left; '>" + "Please enter date of incident" +'</li><br>';
 		$("#date_div").append("<span class='required_field required_div'>Required</span>");
  		$("#date_label").css("color","red");
 	}
@@ -253,7 +256,6 @@ function onSubmission(event)
 	{
 		$("#date_div").css("color","black");
 		$("#date_label").children('.required_div').remove();
-		flag = true;
 	}
 
 	//alert("Date" + date);
@@ -261,7 +263,8 @@ function onSubmission(event)
 	var time = $("#time").val();
 	if(time == ""){
 		flag = false;
-		alert("please enter time of incident");
+	//	alert("please enter time of incident");
+		errorBox_message += "<li style='color:red;float:left; '>" + "Please enter time of incident" + '</li><br>';
 		$("#time_div").append("<span class='required_field required_div'>Required</span>");
  		$("#time_label").css("color","red");
 	}
@@ -269,7 +272,6 @@ function onSubmission(event)
 	{
 		$("#time_div").css("color","black");
 		$("#time_label").children('.required_div').remove();
-		flag = true;
 	}
 
 	//alert("time" + time);
@@ -290,12 +292,21 @@ function onSubmission(event)
  	if(number == "")
  		number = "Anonymous";
 
- 	console.log("Inside for submission");
+ 	//console.log("Inside for submission");
  	
 	event.preventDefault();
 	
-	//alert("before post");
-	$.post( "/submitReport",
+	if(!flag)
+	{
+		$("#errorBox").css("display","block");
+		errorBox_message += "</ul>";
+		$("#errorBox").html(errorBox_message);	
+		//console.log(errorBox_message);
+		window.scrollTo(0, 0);	
+	}
+	else
+	{
+		$.post( "/submitReport",
 	   {      "person": person,
 	        "doYouKnow": doYouKnow,
 	        "firstTimeCrime": firstTimeCrime,
@@ -316,6 +327,10 @@ function onSubmission(event)
 	                  window.open("/thankyou","_self");                   
 	             }                  
         });
+
+	}
+	//alert("before post");
+	
  	
 }
 
