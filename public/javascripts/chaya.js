@@ -331,3 +331,18 @@ function submit_contact()
 	if(message == "")
 		alert("Please enter a message");
 }
+
+function submit_connect(contactType)
+{
+	var locality = $("#connect_locality").val();
+	var city = $("#connect_city").val();
+	var state = $("#connect_state").val();
+	var address = locality + ", " + city + ", " + state;
+	
+	getGoogleMapApiEndpoint(address, function(cooridnateObject){
+		//TODO: call backend for coordinates closed to cooridnateObject
+		document.getElementById("connect_contact").innerHTML  = "Contact Number : " + contactType;
+	});
+
+	return false;
+}

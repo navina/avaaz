@@ -1,11 +1,75 @@
+<style>
+table,tr
+{
+border:1px solid #D8D8D8;
+border-collapse:collapse;
+box-shadow: 10px 10px 5px #888888;
+}
+</style>
 <div class="container-full">
   <div class="row">
     <div class="col-lg-12 text-center v-center">
       <h1>Connect</h1>
       <div class="col-md-8 col-md-offset-2 justified">
-      We establish gateway telephonic conversations with care providers so that you feel you can trust them before you have a face-to-face meeting with them. 
-  </div>
+      We establish gateway telephonic conversations with care providers so that you feel you can trust them before you have a face-to-face meeting with them. </div><br/>
 
+      <form class="form-horizontal"  id="connectForm" name="connectForm">
+      	<div class="col-md-8 col-md-offset-2 row centered-form">
+	        <div class="form-group">
+	            <h4 class="lato-section-header">Please provide city and state of the incident to find help for you.</h4>
+	        </div>
+			<table>
+				<tr>
+				  	<td class="col-xs-12">
+				      <div class="form-group">
+				              <label for="connect_locality" class="control-label col-xs-4">Locality</label>
+				              <div class="col-xs-5">
+				                 <input type="text" class="form-control" id="connect_locality" placeholder="Please enter your locality" />
+				              </div>
+				      </div>
+
+				      <div class="form-group">
+				              <label for="connect_city" class="control-label col-xs-4">City <span class="required_field">*</span></label>
+				              <div class="col-xs-5">
+				                 <input type="text" class="form-control" id="connect_city" required placeholder="Please enter your city" />
+				              </div>
+				      </div>
+
+				      <div class="form-group">
+				              <label for="connect_state" class="control-label col-xs-4">State <span class="required_field">*</span></label>
+				              <div class="col-xs-5">
+				                 <input type="text" class="form-control" id="connect_state" required placeholder="Please enter your state" />
+				              </div>
+				      </div>
+	  				</td>
+	  				<td>
+				      <div class="form-group">
+				              <div class="col-xs-12" style="margin: 5px">
+			                      <button type="button" id="legal" class="btn btn-primary" style="width:200px; margin-right: 20px; margin-top: 20px" onclick="submit_connect(this.id)">LEGAL</button><br/>
+			                  </div>
+			                  <div class="col-xs-12" style="margin: 5px">
+			                      <button type="button" id="intervention_center" class="btn btn-primary" style="width:200px; margin-right: 20px" onclick="submit_connect(this.id)">INTERVENTION CENTER</button><br/>
+			                  </div>
+			                  <div class="col-xs-12" style="margin: 5px">
+			                      <button type="button" id="police" class="btn btn-primary" style="width:200px; margin-right: 20px" onclick="submit_connect(this.id)">POLICE</button><br/>
+			                  </div>
+			                  <div class="col-xs-12" style="margin: 5px">
+			                      <button type="button" id="economic" class="btn btn-primary" style="width:200px; margin-right: 20px" onclick="submit_connect(this.id)">ECONOMIC</button><br/>
+			                  </div>
+			                  <div class="col-xs-12" style="margin: 5px">
+			                      <button type="button" id="medical" class="btn btn-primary" style="width:200px; margin-right: 20px" onclick="submit_connect(this.id)">MEDICAL</button><br/>
+			                  </div>
+				      </div>
+				  	</td>
+				</tr>
+	      </table>
+	  	  </br>
+	      <div class="form-group">
+	            <h4 class="lato-section-header">Your connect help contact will display here.</h4>
+	            <label for="connect_contact" id="connect_contact" class="control-label"></label>
+	      </div>
+	  </div>
+  	</form>
  		
   </div>
 </div>     
