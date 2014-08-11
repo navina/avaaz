@@ -39,4 +39,17 @@ CREATE TABLE IF NOT EXISTS relationship ( \
 	assailantId INT UNSIGNED NULL
 );
 
+CREATE TABLE IF NOT EXISTS organization ( \
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, \
+	orgType ENUM('POLICE','NGO','MEDICAL','LEGAL') NOT NULL, \
+	orgName VARCHAR(200) NOT NULL, \
+	addressLine VARCHAR(200) NOT NULL COMMENT 'If info is not available, we need to inser a blank string', \
+	city VARCHAR(100) NOT NULL COMMENT 'Info required- Cannot be blank', \
+	state VARCHAR (100) NOT NULL COMMENT 'Info required-Cannot be blank', \
+	pincode VARCHAR(10) NOT NULL COMMENT 'Info required - Cannot be blank', \
+	locality VARCHAR(200) NOT NULL COMMENT 'Area / Sector', \
+	phone VARCHAR(15) NOT NULL COMMENT 'If not available, insert blank string', \
+  latitude VARCHAR(50), \
+	longitude VARCHAR(50)
+);
 

@@ -89,49 +89,17 @@ exports.api = function(req, res){
     res.render('api')
 }
 
+exports.org = function(req, res) {
+    var data = req.body;
+    console.log(data);
+    var db = require('./backend.js');
+    var result = db.addOrganization(data, function(orgId){
+        console.log("Organization ID - " + orgId);    
+        res.send(200, {"id": orgId});
+    })    
+}
 
-exports.index = function(req, res){
-    
-    /*var mysql = require('mysql');
-     
-     
-     
-     var dbconfig = {
-     
-     host:'localhost',
-     
-     user:'chhaya',
-     
-     password:'chhayPass123',
-     
-     database:'chhaya',
-     
-     port:'3306'
-     
-     };
-     
-     var connection = mysql.createConnection(dbconfig);
-     
-     var query ='SELECT * FROM person';
-     
-     connection.query(query, function(err, rows, fields){
-     
-     if(err) throw err;
-     
-     //res.render('index', { title: 'Express', 'items':rows });
-     
-     else
-     
-     console.log(rows);
-     
-     
-     
-     });
-     
-     connection.destroy( );*/
-    
-    
-    
+exports.index = function(req, res){    
     var Pool = require('mysql-simple-pool');
     var maxConnections = 100
     

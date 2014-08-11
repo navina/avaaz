@@ -16,6 +16,53 @@ var invalidFieldValue = function(fieldName, itemSet, item) {
   throw new Error("Invalid value '" + item + "' for " + fieldName + "Allowed values - " + itemSet);
 }
 
+module.exports.addOrganization = function(data, callback) {
+	var orgType;
+	if(data.orgType) {
+		if(validateSetMembership(['POLICE', 'NGO', 'MEDICAL', 'LEGAL'], data.orgType)) {
+			orgType = data.orgType;
+		} else {
+			invalidFieldValue("orgType", ['POLICE', 'NGO', 'MEDICAL', 'LEGAL'], data.orgType);
+		}
+	} else {
+		mandatoryFieldError("orgType");
+	}
+	if(!data.orgName) {
+		mandatoryFieldError("orgName");
+	}
+	if(!data.pincode) {
+		mandatoryFieldError("pincode");
+	}
+	if(!data.city) {
+		mandatoryFieldError("city");
+	}
+	if(!data.state) {
+		mandatoryFieldError("state");
+	}	
+	if(!data.phone) {
+		mandatoryFieldError("phone");
+	}		
+	var insertData = { 
+		orgType: orgType, 
+		orgName: data.orgName,
+		addressLine: returnEmptyOnUndefined(data.addressLine),
+		city: data.city,
+		state: data.state,
+		pincode: data.pincode,
+		locality: returnEmptyOnUndefined(data.locality),
+		phone: data.phone,
+		latitude: returnEmptyOnUndefined(data.latitude),
+		longitude: returnEmptyOnUndefined(data.longitude)
+	};
+	pool.getConnection(function(err, connection) {
+		connection.query( 'INSERT INTO organization SET ?', insertData, function(err, result) {
+			if(err) throw err;
+			var id = result.insertId;
+			connection.release();
+			callback(id);
+  		});
+	});
+}
 
 module.exports.fetchData = function(callback) {
 	// Please fill in - we can't obviously fetch all records. Are we going to have a cap on it ??
@@ -192,11 +239,11 @@ function createIncidentRecord(incidentList, incidentDate, incidentTime, location
 }
 
 function validateSetMembership(elements, fieldValue) {
-		if(elements.indexOf(fieldValue.toUpperCase()) < 0) {
-			return false;
-		} else {
-			return true;
-		}
+	if(elements.indexOf(fieldValue.toUpperCase()) < 0) {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 function validateYesOrNoField(fieldValue) {
