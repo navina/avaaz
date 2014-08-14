@@ -337,11 +337,26 @@ function submit_connect(contactType)
 	var locality = $("#connect_locality").val();
 	var city = $("#connect_city").val();
 	var state = $("#connect_state").val();
+	var connectTo = $("#connect_to").val();
 	var address = locality + ", " + city + ", " + state;
+
+	if(city.trim() == "")
+	{
+		alert( "please enter your city" );
+		$("#connect_city").focus();
+		return false;
+		
+	} else if(state.trim() == "")
+	{
+		alert( "please enter your state" );
+		$("#connect_state").focus();
+		return false;
+		
+	}
 	
 	getGoogleMapApiEndpoint(address, function(cooridnateObject){
 		//TODO: call backend for coordinates closed to cooridnateObject
-		document.getElementById("connect_contact").innerHTML  = "Contact Number : " + contactType;
+		document.getElementById("connect_contact").innerHTML  = "Contact Number : " + connectTo;
 	});
 
 	return false;
