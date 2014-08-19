@@ -64,6 +64,39 @@ module.exports.addOrganization = function(data, callback) {
 	});
 }
 
+module.exports.fetchOrgData = function(data, callback) {
+    /*
+      Currently the Org data would be fetched based on Organisation type,
+      ciy and state
+    */
+    var orgType;
+    if(data.orgType) {
+        if(validateSetMembership(['POLICE', 'NGO', 'MEDICAL', 'LEGAL'], data.orgType)) {
+            orgType = data.orgType;
+        } else {
+            invalidFieldValue("orgType", ['POLICE', 'NGO', 'MEDICAL', 'LEGAL'], data.orgType);
+        }
+    } else {
+        mandatoryFieldError("orgType");
+    }
+    if(!data.city) {
+        mandatoryFieldError("city");
+    }
+    if(!data.state) {
+        mandatoryFieldError("state");
+    }
+    pool.getConnection(function(err, connection) {
+        connection.query("SELECT * FROM organization where orgType= ? and city= ? and state= ?", [orgType, data.city, data.state],  function(err, result) {  
+            if(err) throw err;
+            else {
+                console.log(result);
+                callback(result);
+            }   
+            connection.release();
+        });    
+    });
+}
+
 module.exports.fetchData = function(callback) {
 	// Please fill in - we can't obviously fetch all records. Are we going to have a cap on it ??
 	//fetching non null data to make it plottable on map

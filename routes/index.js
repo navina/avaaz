@@ -44,9 +44,6 @@ exports.viewReport = function(req,res){
     });    
     }
     
-    
-
-
 }
 
 exports.viewMap = function(req, res){
@@ -98,6 +95,20 @@ exports.org = function(req, res) {
         res.send(200, {"id": orgId});
     })    
 }
+
+exports.viewOrg = function(req,res){
+    var data = {};
+    data['orgType'] = req.query.orgType;
+    data['state'] = req.query.state;
+    data['city'] = req.query.city;
+    console.log(data);
+    var db = require('./backend.js');
+    var result = db.fetchOrgData(data, function(orgData) {
+        console.log("Organization Data - " + orgData);
+        res.send(200, orgData);
+    })    
+}
+
 
 exports.index = function(req, res){    
     var Pool = require('mysql-simple-pool');
