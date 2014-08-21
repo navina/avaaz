@@ -332,7 +332,7 @@ function submit_contact()
 		alert("Please enter a message");
 }
 
-function submit_connect(contactType)
+function submit_connect()
 {
 	var locality = $("#connect_locality").val();
 	var city = $("#connect_city").val();
@@ -353,10 +353,44 @@ function submit_connect(contactType)
 		return false;
 		
 	}
-	
+
+	var viewOrgUrl = "/viewOrg?orgType="+connectTo+"&state="+encodeURIComponent(state.trim())+"&city="+encodeURIComponent(city.trim());
+	var contact = "";
+	var i = 0;
+
 	getGoogleMapApiEndpoint(address, function(cooridnateObject){
-		//TODO: call backend for coordinates closed to cooridnateObject
-		document.getElementById("connect_contact").innerHTML  = "Contact Number : " + connectTo;
+		//call backend for coordinates closed to cooridnateObject
+		$.ajax({
+    		url: '/viewOrg',
+    		data: {'orgType':connectTo,'state':state.trim(),'city':city.trim()},
+    		success: function(result){
+    			while (result[i]) {
+    				contact += "<li>Phone: "+result[i].phone;
+    				if(result[i].addressLine.trim()!=""){
+    					contact += "<br/>Address: "+result[i].addressLine+", "+result[i].city;
+
+    					if(result[i].locality.trim()!=""){
+    						contact += ", "+result[i].locality;
+    					}
+
+    					contact += ", "+result[i].state+", "+result[i].pincode+"</li>";
+    				}
+
+    				i++;
+				}
+				
+				if(result!=""){
+					contact = "<ul>"+contact+"</ul>";
+				}
+
+				if(contact==""){
+					contact = "No connect contact found for your search!!"
+				}
+
+				document.getElementById("connect_contact").innerHTML  = contact;
+    		}
+		});
+		
 	});
 
 	return false;
