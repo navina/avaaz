@@ -18,3 +18,72 @@ a {
 	color:red;
 	font-weight: bold;
 }
+
+nav.navbar-transparent {
+    background-color: transparent;
+}
+
+div.home-banner {
+    background-image: url("/images/home_background.jpg");
+    background-size: cover;
+    position: relative;
+    top: -80px;
+    background-position: 0px -72px;
+    padding-top: 100px;
+    height: 710px;
+}
+
+.navbar-transparent ul.navbar-nav.underline-hover > li > a {
+    border-bottom: 2px solid transparent;
+    color: inherit;
+}
+
+.navbar-transparent ul.navbar-nav.underline-hover > li > a:hover,
+.navbar-transparent ul.navbar-nav.underline-hover > li > a:active {
+    border-bottom-color: inherit;
+    color: inherit;
+}
+
+.navbar-transparent .navbar-header > a.navbar-brand,
+.navbar-transparent .navbar-header > a.navbar-brand:hover {
+    color: inherit;
+}
+
+.navbar-header > a.navbar-brand {
+    font-size: 30px;
+}
+
+body nav.navbar {
+    transition: background-color 500ms ease-in;
+}
+
+.down-arrow {
+    position: absolute;
+    bottom: 0px;
+}
+
+.bounce {
+    position:fixed;
+    left:50%;
+    bottom:10px;
+    margin-top:-25px;
+    margin-left:-25px;
+    height:50px;
+    width:50px;
+    -webkit-animation:bounce 1s 3;
+    animation:bounce 1s 3;
+}
+
+@-webkit-keyframes bounce {
+  0%       { bottom:5px; }
+  25%, 75% { bottom:15px; }
+  50%      { bottom:20px; }
+  100%     {bottom:0;}
+}
+
+@keyframes bounce {
+  0%       { bottom:5px; }
+  25%, 75% { bottom:15px; }
+  50%      { bottom:20px; }
+  100%     {bottom:0;}
+}
