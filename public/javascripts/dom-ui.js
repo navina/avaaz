@@ -1,5 +1,9 @@
 $(document).ready(function() {
     console.log( "ready!" );
+    smoothScroll.init({
+        speed: 1000, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutQuad', // Easing pattern to use
+    });
 });
 
 $(window).scroll(function() {    
@@ -16,4 +20,4 @@ $(window).scroll(function() {
     } else {
         $(".down-arrow").show();
     }
-}); //missing );
+});
