@@ -18,3 +18,57 @@ a {
 	color:red;
 	font-weight: bold;
 }
+
+nav.navbar-transparent {
+    background-color: transparent;
+}
+
+div.home-banner {
+    background-image: url("/images/home_background.jpg");
+    background-size: cover;
+    position: relative;
+    top: -80px;
+    background-position: 0px -72px;
+    padding-top: 100px;
+    height: 710px;
+}
+
+.navbar-transparent ul.navbar-nav.underline-hover > li > a {
+    border-bottom: 2px solid transparent;
+    color: inherit;
+}
+
+.navbar-transparent ul.navbar-nav.underline-hover > li > a:hover,
+.navbar-transparent ul.navbar-nav.underline-hover > li > a:active {
+    border-bottom-color: inherit;
+    color: inherit;
+}
+
+.navbar-transparent .navbar-header > a.navbar-brand,
+.navbar-transparent .navbar-header > a.navbar-brand:hover {
+    color: inherit;
+}
+
+.navbar-header > a.navbar-brand {
+    font-size: 30px;
+}
+
+body nav.navbar {
+    transition: background-color 500ms ease-in;
+}
+
+.down-arrow {
+    position: absolute;
+    bottom: 0px;
+}
+
+footer {
+  margin-top: 5em;
+  margin-bottom: 1em;
+}
+
+footer li {
+  float: left;
+  margin-bottom: 1.5em;
+  margin-right: 1.5em;
+}
