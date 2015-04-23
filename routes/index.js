@@ -151,20 +151,22 @@ exports.index = function(req, res){
 var nodemailer = require('nodemailer');
 var ses = require('nodemailer-ses-transport');
 var transporter = nodemailer.createTransport(ses({
-    accessKeyId: 'AKIAIC7MNBO6SSOBVHXQ',
-    secretAccessKey: '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',
+    accessKeyId: 'AKIAI7QTDRLEQL6YD4EA',
+    secretAccessKey: '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',
     region: 'us-west-2'
 }));
 
 exports.submitFeedback = function(req, res){
     var data = req.body;
     console.log(data);
-    var email = '<h3>Name:</h3><p>' + data.name + '</p><br /><h3>Email:</h3><p>' + data.email + '</p><br /><h3>Feedback:</h3><p>' + data.message + '</p>';
+    var name = (data.name) ? data.name : 'Unspecified';
+    var emailAddress = (data.email) ? data.email : 'Unspecified';
+    var emailBody = '<h3>Name:</h3><p>' + name + '</p><br /><h3>Email:</h3><p>' + emailAddress + '</p><br /><h3>Feedback:</h3><p>' + data.message + '</p>';
     transporter.sendMail({
         from: 'arzavj93@gmail.com',
         to: 'zariya-feedback@googlegroups.com',
-        subject: 'Feedback from ' + data.name,
-        html: email,
+        subject: 'Feedback from ' + name,
+        html: emailBody,
         generateTextFromHTML: true
     }, function(error, info){
         if (error) {
