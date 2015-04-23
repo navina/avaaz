@@ -148,3 +148,30 @@ exports.index = function(req, res){
     pool.dispose();
 }
 
+var nodemailer = require('nodemailer');
+var ses = require('nodemailer-ses-transport');
+var transporter = nodemailer.createTransport(ses({
+    accessKeyId: 'AKIAIC7MNBO6SSOBVHXQ',
+    secretAccessKey: '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',
+    region: 'us-west-2'
+}));
+
+exports.submitFeedback = function(req, res){
+    var data = req.body;
+    console.log(data);
+    var email = '<h3>Name:</h3><p>' + data.name + '</p><br /><h3>Email:</h3><p>' + data.email + '</p><br /><h3>Feedback:</h3><p>' + data.message + '</p>';
+    transporter.sendMail({
+        from: 'arzavj@stanford.edu',
+        to: 'zariya.feedback@gmail.com',
+        subject: 'Feedback from ' + data.name,
+        html: email,
+        generateTextFromHTML: true
+    }, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Message sent: ' + info.response);
+        }
+    });
+    res.send(200, "Feedback successfully submitted.");
+};

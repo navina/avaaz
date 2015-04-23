@@ -4,6 +4,24 @@ $(document).ready(function() {
         speed: 1000, // Integer. How fast to complete the scroll in milliseconds
         easing: 'easeInOutQuad', // Easing pattern to use
     });
+    $('#feedback-form').submit(function () {
+        $.ajax({
+            type: "POST",
+            url: "/feedback",
+            data: $("#feedback-form").serialize(),
+            success: function(data) {
+                console.log(data);
+                $("#feedback-thankyou").removeClass("hidden");
+                $("#feedback-form, #feedback .modal-footer label").hide();
+            },
+            error: function(data) {
+                console.log(data.responseText);
+                $("#feedback-error").removeClass("hidden");
+                $("#feedback-form, #feedback .modal-footer label").hide();
+            } 
+         });
+        return false;
+    });
 });
 
 $(window).scroll(function() {    
