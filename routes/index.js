@@ -161,8 +161,8 @@ exports.submitFeedback = function(req, res){
     console.log(data);
     var email = '<h3>Name:</h3><p>' + data.name + '</p><br /><h3>Email:</h3><p>' + data.email + '</p><br /><h3>Feedback:</h3><p>' + data.message + '</p>';
     transporter.sendMail({
-        from: 'arzavj@stanford.edu',
-        to: 'zariya.feedback@gmail.com',
+        from: 'arzavj93@gmail.com',
+        to: 'zariya-feedback@googlegroups.com',
         subject: 'Feedback from ' + data.name,
         html: email,
         generateTextFromHTML: true
