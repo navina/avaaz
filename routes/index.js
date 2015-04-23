@@ -151,8 +151,6 @@ exports.index = function(req, res){
 var nodemailer = require('nodemailer');
 var ses = require('nodemailer-ses-transport');
 var transporter = nodemailer.createTransport(ses({
-    accessKeyId: 'AKIAI7QTDRLEQL6YD4EA',
-    secretAccessKey: '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',
     region: 'us-west-2'
 }));
 
