@@ -148,3 +148,30 @@ exports.index = function(req, res){
     pool.dispose();
 }
 
+var nodemailer = require('nodemailer');
+var ses = require('nodemailer-ses-transport');
+var transporter = nodemailer.createTransport(ses({
+    region: 'us-west-2'
+}));
+
+exports.submitFeedback = function(req, res){
+    var data = req.body;
+    console.log(data);
+    var name = (data.name) ? data.name : 'Unspecified';
+    var emailAddress = (data.email) ? data.email : 'Unspecified';
+    var emailBody = '<h3>Name:</h3><p>' + name + '</p><br /><h3>Email:</h3><p>' + emailAddress + '</p><br /><h3>Feedback:</h3><p>' + data.message + '</p>';
+    transporter.sendMail({
+        from: 'arzavj93@gmail.com',
+        to: 'zariya-feedback@googlegroups.com',
+        subject: 'Feedback from ' + name,
+        html: emailBody,
+        generateTextFromHTML: true
+    }, function(error, info){
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Message sent: ' + info.response);
+        }
+    });
+    res.send(200, "Feedback successfully submitted.");
+};

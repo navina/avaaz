@@ -1,3 +1,10 @@
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+
 body {
   padding-top: 80px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -62,13 +69,51 @@ body nav.navbar {
     bottom: 0px;
 }
 
-footer {
-  margin-top: 5em;
-  margin-bottom: 1em;
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -100px;
+}
+
+.wrapper:after {
+  content: "";
+  display: block;
+}
+
+footer, .wrapper:after {
+  height: 100px;
 }
 
 footer li {
   float: left;
   margin-bottom: 1.5em;
   margin-right: 1.5em;
+}
+
+#how-it-works {
+  margin-bottom: 50px;
+}
+
+#feedback-link { 
+  position: fixed; 
+  top: 40%;
+  right: 0px;
+  z-index: 999;
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg); 
+  -moz-transform: rotate(-90deg); 
+  -o-transform: rotate(-90deg); 
+  transform-origin: 100% 100%;
+  -webkit-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  -moz-transform-origin: 100% 100%;
+  -o-transform-origin: 100% 100%;
+}
+
+#feedback-link a {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding-bottom: 2px;
+  padding-top: 2px;
 }
