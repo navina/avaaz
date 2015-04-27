@@ -92,3 +92,28 @@ footer li {
 #how-it-works {
   margin-bottom: 50px;
 }
+
+#feedback-link { 
+  position: fixed; 
+  top: 40%;
+  right: 0px;
+  z-index: 999;
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg); 
+  -moz-transform: rotate(-90deg); 
+  -o-transform: rotate(-90deg); 
+  transform-origin: 100% 100%;
+  -webkit-transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  -moz-transform-origin: 100% 100%;
+  -o-transform-origin: 100% 100%;
+}
+
+#feedback-link a {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
