@@ -1,10 +1,10 @@
 var mysql = require('mysql');
 var validator = require('node-validator');
 var pool  = mysql.createPool({
-  host     : 'zariya.cw6ohvqgsy0r.us-west-1.rds.amazonaws.com',
-  user     : 'arzav',
-  password : 'zariyaPass123',
-  database : 'zariya',
+  host     : process.env.MYSQL_HOST,
+  user     : process.env.MYSQL_USERNAME,
+  password : process.env.MYSQL_PASSWORD,
+  database : process.env.MYSQL_DB,
   port: '3306'
 });
 
