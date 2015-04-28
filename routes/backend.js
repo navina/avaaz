@@ -261,8 +261,9 @@ function createIncidentRecord(incidentList, incidentDate, incidentTime, location
 	};
 	console.log(insertData);
 	pool.getConnection(function(err, connection) {
-		connection.query( 'INSERT INTO incident SET ?', insertData, function(err, result) {
-			if(err) throw err;
+		if(err) throw err;
+		connection.query( 'INSERT INTO incident SET ?', insertData, function(error, result) {
+			if(error) throw error;
 			var id = result.insertId;
 			connection.release();
 			callback(id);
