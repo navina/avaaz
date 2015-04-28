@@ -169,9 +169,10 @@ exports.submitFeedback = function(req, res){
     }, function(error, info){
         if (error) {
             console.log(error);
+            res.send(500, "Error sending mail to SES. See heroku logs.");
         } else {
             console.log('Message sent: ' + info.response);
+            res.send(200, "Feedback successfully submitted.");
         }
     });
-    res.send(200, "Feedback successfully submitted.");
 };
