@@ -1,24 +1,23 @@
 This application is built on NodeJs and uses express as the webserver.
 
 Step 1: 
-Install NodeJs 
-You can optionally refer to http://howtonode.org/how-to-install-nodejs 
+Install NodeJs from https://nodejs.org/download/
 
 Step 2:
+Install the Heroku toolbelt from https://toolbelt.heroku.com/ for both local development and remote testing on Heroku.
+
+Step 3:
+Ask Arzav (@arzavj) for the file with all configuration details and if you want access to the heroku instance.
+
+Step 4:
 Inside the root folder of the application (avaaz), type the following commands in the terminal
 
 <ol>
 <li>npm install</li>
-<li>PORT=<<i>port_of_your_choice</i>> node app.js
-(Eg: PORT=9999 node app.js)</li>
+<li>foreman start web</li>
 </ol>
 
-Step 3:
-Visit http://localhost:<<i>port_of_your_choice</i>>
-eg: http://localhost:9999 
-
-you should find the application running on your box
-
-Test Edit
+Step 5:
+Visit http://localhost:5000 in a browser.
 
 
