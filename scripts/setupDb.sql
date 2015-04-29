@@ -1,7 +1,8 @@
-CREATE DATABASE zariya;
+-- CREATE DATABASE zariya;
 
-CREATE USER 'zariya'@'localhost' IDENTIFIED BY 'zariyaPass123';
-GRANT ALL PRIVILEGES ON zariya.* TO 'zariya'@'localhost';
+-- CREATE USER 'zariya'@'localhost' IDENTIFIED BY 'zariyaPass123';
+-- GRANT ALL PRIVILEGES ON zariya.* TO 'zariya'@'localhost';
+GRANT USAGE ON *.* TO 'arzav'@'%' REQUIRE SSL;
 
 USE zariya;
 

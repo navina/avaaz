@@ -1,0 +1,7 @@
+USE zariya;
+
+DROP TABLE IF EXISTS person;
+DROP TABLE IF EXISTS content;
+DROP TABLE IF EXISTS incident;
+DROP TABLE IF EXISTS relationship;
+DROP TABLE IF EXISTS organization;

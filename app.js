@@ -32,6 +32,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.home);
 app.get('/home', routes.home);
+app.get('/index', routes.home);
 app.get('/submitReport', routes.submitReport);
 app.post('/submitReport', routes.submitReportData);
 app.get('/viewMap', routes.viewMap);
@@ -40,7 +41,6 @@ app.get('/legalAdvise', routes.legalAdvise);
 app.get('/aboutUs', routes.aboutUs);
 app.get('/contactUs', routes.contactUs);
 app.get('/sampleMap', routes.sampleMap);
-app.get('/index', routes.index);
 app.get('/info', routes.info);
 app.get('/connect', routes.connect);
 app.get('/track', routes.track);

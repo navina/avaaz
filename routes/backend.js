@@ -1,10 +1,11 @@
-var mysql = require('mysql');
+var mysql = require('mysql2');
 var validator = require('node-validator');
 var pool  = mysql.createPool({
-  host     : 'localhost',
-  user     : 'zariya',
-  password : 'zariyaPass123',
-  database : 'zariya',
+  host     : process.env.MYSQL_HOST,
+  user     : process.env.MYSQL_USERNAME,
+  password : process.env.MYSQL_PASSWORD,
+  database : process.env.MYSQL_DB,
+  ssl: 'Amazon RDS',
   port: '3306'
 });
 
@@ -55,8 +56,9 @@ module.exports.addOrganization = function(data, callback) {
 		longitude: returnEmptyOnUndefined(data.longitude)
 	};
 	pool.getConnection(function(err, connection) {
-		connection.query( 'INSERT INTO organization SET ?', insertData, function(err, result) {
-			if(err) throw err;
+		if(err)	throw err;
+		connection.query( 'INSERT INTO organization SET ?', insertData, function(error, result) {
+			if(error) throw error;
 			var id = result.insertId;
 			connection.release();
 			callback(id);
@@ -86,8 +88,9 @@ module.exports.fetchOrgData = function(data, callback) {
         mandatoryFieldError("state");
     }
     pool.getConnection(function(err, connection) {
-        connection.query("SELECT * FROM organization where orgType= ? and city= ? and state= ?", [orgType, data.city, data.state],  function(err, result) {  
-            if(err) throw err;
+    	if(err)	throw err;
+        connection.query("SELECT * FROM organization where orgType= ? and city= ? and state= ?", [orgType, data.city, data.state],  function(error, result) {  
+            if(error) throw error;
             else {
                 console.log(result);
                 callback(result);
@@ -101,8 +104,9 @@ module.exports.fetchData = function(callback) {
 	// Please fill in - we can't obviously fetch all records. Are we going to have a cap on it ??
 	//fetching non null data to make it plottable on map
 	pool.getConnection(function(err, connection) {
-		connection.query('SELECT latitude, longitude, categories FROM incident WHERE latitude != "" AND longitude != "" AND categories != ""', function(err, result) {
-			if(err)	throw err;
+		if(err)	throw err;
+		connection.query('SELECT latitude, longitude, categories FROM incident WHERE latitude != "" AND longitude != "" AND categories != ""', function(error, result) {
+			if(error)	throw error;
 			else {
 				//console.log(result.latitude);
 				callback(result);
@@ -116,8 +120,9 @@ module.exports.fetchDataFromId = function(id, callback) {
 	// Please fill in - we can't obviously fetch all records. Are we going to have a cap on it ??
 	//Fetching all the data for now
 	pool.getConnection(function(err, connection) {
-		connection.query('SELECT * FROM incident WHERE id ='+id, function(err, result) {
-			if(err)	throw err;
+		if(err)	throw err;
+		connection.query('SELECT * FROM incident WHERE id ='+id, function(error, result) {
+			if(error)	throw error;
 			else {
 				//console.log(result.latitude);
 				callback(result);
@@ -222,8 +227,9 @@ function createRelationshipRecord(personId, incidentId) {
 		incidentId: incidentId
 	}
 	pool.getConnection(function(err, connection) {
-		connection.query('INSERT INTO relationship SET ?', insertData, function(err, result) {
-			if(err)	throw err;
+		if(err)	throw err;
+		connection.query('INSERT INTO relationship SET ?', insertData, function(error, result) {
+			if(error)	throw error;
 			connection.release();
 		});
 	});	
@@ -237,8 +243,9 @@ function createPersonRecord(firstName, lastName, email, phone) {
 		phone: phone
 	};
 	pool.getConnection(function(err, connection) {
-		connection.query('INSERT INTO person SET ?', insertData, function(err, result) {
-			if(err)	throw err;
+		if(err)	throw err;
+		connection.query('INSERT INTO person SET ?', insertData, function(error, result) {
+			if(error)	throw error;
 			var id = result.insertId;	// !! I am not sure how to return this to the UI. Once connection.release() is invoked, result is invalidated. So reference is undefined. Try to figure out how to copy the value and not reference here
 			connection.release();
 			return id;
@@ -261,8 +268,9 @@ function createIncidentRecord(incidentList, incidentDate, incidentTime, location
 	};
 	console.log(insertData);
 	pool.getConnection(function(err, connection) {
-		connection.query( 'INSERT INTO incident SET ?', insertData, function(err, result) {
-			if(err) throw err;
+		if(err) throw err;
+		connection.query( 'INSERT INTO incident SET ?', insertData, function(error, result) {
+			if(error) throw error;
 			var id = result.insertId;
 			connection.release();
 			callback(id);
