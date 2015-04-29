@@ -1,10 +1,11 @@
-var mysql = require('mysql');
+var mysql = require('mysql2');
 var validator = require('node-validator');
 var pool  = mysql.createPool({
   host     : process.env.MYSQL_HOST,
   user     : process.env.MYSQL_USERNAME,
   password : process.env.MYSQL_PASSWORD,
   database : process.env.MYSQL_DB,
+  ssl: 'Amazon RDS',
   port: '3306'
 });
 

@@ -109,45 +109,6 @@ exports.viewOrg = function(req,res){
     })    
 }
 
-
-exports.index = function(req, res){    
-    var Pool = require('mysql-simple-pool');
-    var maxConnections = 100
-    
-    var pool = new Pool(maxConnections, {
-                        
-                        host: 'localhost',
-                        
-                        user: 'zariya',
-                        
-                        password: 'zariyaPass123',
-                        
-                        database: 'zariya'
-                        
-                        });
-    
-    var qry ='SELECT * FROM person';
-    
-    var qry1='INSERT INTO person(firstName,lastName,email,phone)VALUES("john","doe","j@doe.com","1234567788")';
-    pool.query(qry1, function(err, results){
-               
-               if(err) throw err;
-               
-               
-               })
-    
-    pool.query(qry, function(err, results){
-               
-               if(err) throw err;
-               
-               else
-               
-               console.log(results);
-               
-               });
-    pool.dispose();
-}
-
 var nodemailer = require('nodemailer');
 var ses = require('nodemailer-ses-transport');
 var transporter = nodemailer.createTransport(ses({
