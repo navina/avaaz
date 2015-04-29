@@ -1,4 +1,4 @@
-This application is built on NodeJs, uses Express as the webserver and is currently deployed at zariya.herokuapp.com
+This application is built on NodeJs, uses Express as the webserver and is currently deployed on <a href="http://zariya.herokuapp.com">Heroku</a>
 
 ##Setting up the development environment
 
