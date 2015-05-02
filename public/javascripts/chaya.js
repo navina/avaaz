@@ -293,8 +293,8 @@ function onSubmission(event)
 	}
 	else
 	{
-		$.post( "/submitReport",
-	   {      "person": person,
+		$.post( "/submitReport", {    
+	   		"person": person,
 	        "doYouKnow": doYouKnow,
 	        "firstTimeCrime": firstTimeCrime,
 	        "incidentList": incident_list,
@@ -308,11 +308,12 @@ function onSubmission(event)
 	        "firstName" : firstName,
 	        "lastName" : lastName,
 	        "email": email,
-	        "number" : number}, function(response, status, xhr){
-	             if(xhr.status == 200)
-	             {
-	                  window.open("/thankyou","_self");                   
-	             }                  
+	        "number" : number
+	    }, function(response, status, xhr) {
+			if(xhr.status == 200)
+			{
+			  window.open("/thankyou","_self");                   
+			}                  
         });
 
 	}

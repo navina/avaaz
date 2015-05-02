@@ -28,7 +28,7 @@ $(document).ready(function() {
 $(window).scroll(function() {    
     var scroll = $(window).scrollTop();
 
-    if (scroll >= 500) {
+    if (scroll >= 150) {
         $("nav.navbar").removeClass("navbar-transparent");
     } else {
         $("nav.navbar").addClass("navbar-transparent");

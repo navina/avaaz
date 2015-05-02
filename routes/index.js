@@ -21,7 +21,7 @@ exports.submitReportData = function(req, res){
     var data = req.body;
     console.log(data);
     var db = require('./backend.js');
-    var result = db.processForm(data, function(incidentId){
+    var result = db.processForm(data, function(incidentId) {
         console.log("This is your report ID - " + incidentId);    
         res.send(200, {"id":incidentId});
     })
