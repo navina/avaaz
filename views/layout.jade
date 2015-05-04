@@ -5,7 +5,6 @@ html
     script(src='/javascripts/jquery.js')
     script(src='/javascripts/smooth-scroll.min.js')
     script(src='/javascripts/bootstrap.js')
-    script(src='/javascripts/chaya.js')
     script(src='/javascripts/dom-ui.js')
     script(src='//code.jquery.com/jquery-1.10.2.js')
     script(src='//code.jquery.com/ui/1.10.4/jquery-ui.js')
@@ -13,12 +12,14 @@ html
     link(rel='stylesheet', href='//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css')
     script(src='/javascripts/data.json')
     script(src='/javascripts/markercluster.js')
+    script(src='/javascripts/chaya.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/flatly_bootstrap.css')
     link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Lato:300,400,900')
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=EB+Garamond:300,400,900')
     <link rel="icon" type="image/jpg" href="/favicon.jpg">
+    block extraHeader
     
   body
     include navbar.html

@@ -46,44 +46,32 @@ exports.viewReport = function(req,res){
     
 }
 
-exports.viewMap = function(req, res){
-	res.render('viewMap')
-}
-
-exports.legalAdvise = function(req, res){
-	res.render('legalAdvise')
+exports.findHelp = function(req, res) {
+    res.render('findHelp');
 }
 
 exports.aboutUs = function(req, res){
-	res.render('aboutUs')
+	res.render('aboutUs');
 }
 
 exports.contactUs = function(req, res){
-	res.render('contactUs')
-}
-
-exports.sampleMap = function(req, res){
-	res.render('sampleMapWithAddress')
-}
-
-exports.info = function(req, res){
-    res.render('info')    
+	res.render('contactUs');
 }
 
 exports.connect = function(req, res){
-    res.render('connect')    
+    res.render('connect');
 }
 
 exports.track = function(req, res){
-    res.render('track')    
+    res.render('track');
 }
 
 exports.thankyou = function(req, res){
-    res.render('thankyou')    
+    res.render('thankyou');
 }
 
 exports.api = function(req, res){
-    res.render('api')
+    res.render('api');
 }
 
 exports.org = function(req, res) {

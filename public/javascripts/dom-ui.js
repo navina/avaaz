@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    console.log( "ready!" );
+
     $("#feedback-link").hide();
     smoothScroll.init({
         speed: 1000, // Integer. How fast to complete the scroll in milliseconds
